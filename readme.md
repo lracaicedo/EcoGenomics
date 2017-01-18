@@ -10,10 +10,9 @@ Create a list:
 Syntax for creating a list   
 
 ```
-* item 1   
-* item 2   
-* item 3 always three spaces for line break   
-* for a code block like this one add three back ticks (```) before and after block
+* item 1 always three spaces for line break     
+* item 2 for a code block like this one add three back ticks (```) before and after block   
+* item 3  
 
 ```
 
@@ -36,4 +35,4 @@ to get URL isses, name folder pictures, drag and drop picture from computer and 
 ```
 
 Implement picture:   
-![picture](https://cloud.githubusercontent.com/assets/22891187/22071615/b29c6446-dd6d-11e6-91e5-cff5bb36a55e.jpg)
+![pibe](https://cloud.githubusercontent.com/assets/22891187/22071615/b29c6446-dd6d-11e6-91e5-cff5bb36a55e.jpg)
