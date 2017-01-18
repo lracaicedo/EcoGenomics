@@ -12,5 +12,5 @@ Syntax for creating a list
 ```
 * item 1   
 * item 2   
-* item 3   
+* item 3 always three spaces for line break   
 ```
