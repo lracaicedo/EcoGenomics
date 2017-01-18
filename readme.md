@@ -32,7 +32,7 @@ Example of embedding an image:
 Syntax/Instructions:   
 ```
 ![](URL)   
-to get URL isses, name folder pictures, drag and drop picture from comuter and copy link address and insert in syntax
+to get URL isses, name folder pictures, drag and drop picture from comuter and copy link address and insert in syntax   
 ```
 
 Implement picture:   
