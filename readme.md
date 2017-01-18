@@ -29,7 +29,8 @@ Learn about our project on our [website] (http://www.islandbiogeography.org/).
 
 Example of embedding an image:   
 
-Syntax:   
+Syntax/Instructions:   
 ```
-![](URL)
+![](URL)   
+to get URL isses, name folder pictures, drag and drop picture from comuter and copy link address and insert in syntax
 ```
