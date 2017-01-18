@@ -25,4 +25,11 @@ Syntax:
 Implementation:   
 
 
-Learn about our project on our [website] (http://www.islandbiogeography.org/).
+Learn about our project on our [website] (http://www.islandbiogeography.org/).   
+
+Example of embedding an image:   
+
+Syntax:   
+```
+![](URL)
+```
