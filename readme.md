@@ -25,4 +25,4 @@ Syntax:
 Implementation:   
 
 
-[project website] (http://www.islandbiogeography.org/)
+Learn about our project [project website] (http://www.islandbiogeography.org/).
