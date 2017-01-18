@@ -25,4 +25,4 @@ Syntax:
 Implementation:   
 
 
-[hyperlinked words] (http://www.islandbiogeography.org/)
+[project website] (http://www.islandbiogeography.org/)
