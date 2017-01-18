@@ -17,9 +17,12 @@ Syntax for creating a list
 
 ```
 
-Example of embedding a URL:
+Example of embedding a URL:   
 Syntax:
 ```
 [hyperlinked words] (http://www.islandbiogeography.org/)
 ```
 Implementation:   
+
+
+[hyperlinked words] (http://www.islandbiogeography.org/)
