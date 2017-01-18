@@ -34,3 +34,6 @@ Syntax/Instructions:
 ![](URL)   
 to get URL isses, name folder pictures, drag and drop picture from comuter and copy link address and insert in syntax
 ```
+
+Implement picture:   
+![picture](https://cloud.githubusercontent.com/assets/22891187/22071615/b29c6446-dd6d-11e6-91e5-cff5bb36a55e.jpg)
