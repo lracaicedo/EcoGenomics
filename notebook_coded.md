@@ -316,3 +316,190 @@ Methods:
 THM (Take home message):
 
 Functional enrichment of cuticular structure genes, mostly in higher altitudes. 
+
+
+
+______
+
+02/08/2017
+
+#### Info update: Transcriptomics (Lisa C.)
+
+<u>Outline</u>
+
+- Introduction
+
+  Look at wild systems: 
+
+  - non-model (no ref. genome) / non-traditional (hasn't been used traditionally) model organism
+  - silent genes responding to multiple stimuli
+  - novel transcripts wothout homologs in closely related model organisms
+
+  ​
+
+- Brief Overview of Transcriptomics
+
+  2 Methods:
+
+  | Microarray                            | RNA-seq                            |
+  | ------------------------------------- | ---------------------------------- |
+  | easy for ecological analyses          | Genome wide ecological transcripts |
+  | need a reference genome (need probes) | More involved analyses             |
+
+  Questions: 
+
+  1. How much variation is there in gene expression & how is it structured?
+  2. How do environmental stimuli affect gene expression?
+  3. How does gene expressiona affect phenotype?
+
+- Main Questions
+
+  1) Evolutionary processes
+
+  - Gene expression heretable— natural selection
+  - Qst - Fst comparissons
+  - eQTL expression quantitative trait loci mapping, expression of populations within populations
+  - Epigenetics
+  - Macroevolution: drift, selection, bottleneck
+
+  2) Q2: environmetal stimuli
+
+  - abiotic stress
+  - environmental heterogeneity
+  - host-parasite interactions
+  - selective biotic and abiotic interactions: at levels: molecular, genotype, phenotypic plasticity
+  - a snapshot at that time of expression: flash freeze to prevent environmetal effects (if not RNA later)
+  - time course analysis: transcritional response through time ($$)
+
+  3) Q3: Gene expression and phenotype
+
+  - Alternate phenotypes 
+    - moving from correlation to causation: transgenics, RNAi, CRISPR/CAS (use of knockdown of genes for this analysis)
+
+- Future Directions
+
+  - Use of combined Microarrays and RNA-seq to test (need availabe probes depending on the questions)
+  - Database for proposed ecological annotations
+  - Address problems
+    - Bias in signal: in commonly expressed genes
+    - heterologous arrays: just microarrays
+    - Polyploidy
+    - RNA Pooling
+    - Statistical Analysis
+    - Unannotated Genes
+
+Glossary:
+
+Transcritomics: the srudy of the transcriptome which is the complete set of RNA transcripts produces by the genome
+
+Qst- Fst comparissons: A means to distinguish between genetic drift and natural selection in driving differentiation in a population. (Qst= amount if variation in quantitative traits in a popultaion) (Fst= variation in a neutral loci)
+
+
+
+_______
+
+02/13/2017
+
+##### <u>RNA-seq Info Update 3</u>
+
+Outline:
+
+- Background
+- Issues
+- R exercise
+- General Rules of Thumb
+
+A) Background
+
+- Enables DE examination (inter-population individual)
+
+  - disease resistance
+  - mating behavior
+  - adaptive significance
+
+- Molecular mechanisms  
+
+  - phenotypic/behavioral plasticity
+
+  - migration patterns
+
+     
+
+- Limitations
+
+  - reference genome quality
+  - gene annotation availability
+  - expense per sample library prep.
+
+B) Issues
+
+- Under utilization of biological replicates
+  - Requiring independent library preparations
+  - doesn't include pooled samples
+  - 23/258 studies (15%) > 3 biological replicates
+  - derive broad biological conclusions
+- Prioritize sequence depth over replication (one of the key trade-offs), **big problem**
+- Wide dynamic range of RNA-seq data —> Noisy
+  - Poisson counting error
+  - non-poisson technical variance (associated with storage of sample...)
+  - Biological variance (natural), ussually the largest variance
+
+C) R exercise
+
+- Effect size measured in fold change: 
+  - control gene: 15 —> 30, fold change= 30/15=2 (up regulation)
+- lower variance gives higher power
+- with high biological variance, you don't know where the variance is coming from therefore power is low. 
+
+D) General Rules of Thumb
+
+- Use more biological replicates to estimate biological variance more effectively
+- Sequence depth > 10 reads/transcript (sufficient enough to minimize technical error).  ~ 10-20 million mapped reads/ samples
+- 3 Biological replicates per condition
+- conduct a pilot experiment (to determine number of replicates)
+  - What is the best/powerful experiment I can afford?
+  - What is the smallest foldchange I can detect?
+
+
+
+<u>Glossary</u>
+
+1. Sequence coverage = the average # of reads that align/ "cover" known reference bases
+2. Read depth = total # of bases sequenced/aligned at given reference base position.(multiple reads covering the exact same base pair in order to have depth). Low expression genes, may not be detected with low read depth. 
+3. Statistical noise = unexplained variation/ randomness 
+4. Power = probability of refecting false null hypothesis
+5. Biological variation = natural variation in gene expression measurements due to environmental or genetic diffs. 
+
+
+
+##### <u>Paper discussion</u>
+
+Johnston et al. 2016: Seasonal gene expression in a migratory songbird
+
+Measure of transcriptome wide gene expression on migratory Swanson's thrushes (2 subspecies). C. u. ustulatus- coastal and C. u. swainsoni- inland
+
+
+
+Methods: 
+
+- Collected in summer using mist nets. sampling (sacrifice) on 2 seasons (summer and autumn simmulated). Migratory and non-migratory states: nocturnal activity for migratory birds (all post reproductive). Biological replicates all higher than 3. 
+
+- gene expression: still want to use unpaired reads, weigh them equally as paired-end reads even if they don't match reference genome 
+
+- q-value as opposed to P-value, they have too many genes and regressions
+
+  ​
+
+Results:
+
+- Fig 1: A= "scatterplot" y axix is Q-values (predicted # of false positives hanging on the tail, p-value distribution and find false discovery rate) here when higher to 0.2 and closer to 0 it is significant. x-axis: log2 (foldchange of 2). red for genes highlighted in B. B=
+- Fig 2
+
+THM:
+
+- expected a set of genes fo be DE for circannual changes but found others, related to light changes
+- Genes as hubs of gene expression networks
+- ​
+
+ 
+
