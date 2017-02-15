@@ -1,7 +1,7 @@
 
 # 2017 Ecological Genomics Course
 
-### Author: ANTdrew D. Nguyen     
+### Author: Laura Caicedo-Quiroga     
 
 
 ## Overall Description of notebook      
@@ -659,11 +659,11 @@ Steve will be writing up projects on the board:
        * Focus on the transitions: HS, HH, SS
          * blocking based on time 
          * what is the workflow? 
-           * 
+           * ​
      * Back up Q: comapre responses to another species. 
      * Use random group of genes to use as housekeeping and control
      * make heat map or venn diagram of differential gene expression 
-     * 
+     * ​
 2. **Intertidal vs subtidal** 
    * Genetic differences in susceptibility
    * local adaptation? 
@@ -689,7 +689,7 @@ Steve will be writing up projects on the board:
      * stability of gxp for HH vs HS; House keeping genes? 
      * Which ones are varying over time? 
      * **functional enrichment for varying or stable through time**
-     * 
+     * ​
 4. **Heritability of microbiome**
    * compare microbial commuity to host individual relatedness
 5. **Comparison within the intertidal group**
@@ -1048,8 +1048,6 @@ tar -xvf Trinity-v2.3.2.tar
    ./runMe.sh
    ```
 
-   
-
 
 
 
@@ -1265,7 +1263,7 @@ What are unigenes? *Trinity components containing clusters of ‘contigs’ repr
 
      ```
 
-   * 
+   * ​
 
 
 
@@ -1323,7 +1321,7 @@ TrimmomaticPE: Completed successfully
   * It is also more engaging when the instructor takes notes or copy and paste code into a notebook
 * Give more clear instructions for how journal club leaders should lead a paper. 
   * Students should give questions, rational, hypotheses, experimental design,
-* 
+* ​
 
 ------
 <div id='id-section9'/>
@@ -1409,7 +1407,7 @@ Learning goals (skills):
 4. moving files
    * on the server 
    * ==from server to our computer (scp)==
-5. 
+5. ​
 
 Practical:
 
@@ -1628,7 +1626,7 @@ If the natural variation of diapause does play critical roles in adaptation to e
 Basically: Variation in gene expression associated with diapause should be under selection. One way to visualize this is how these genes vary across space(latitude) and time(season)
 
 2. Maternal epigenetic effects: They hypothesized that higher level regulatory mechanisms such as local sharing of regulatory elements and chromatin structure may also be involved in the regulation of diapause in D. melanogaster,
-3. 
+3. ​
 
 Methods
 
@@ -1704,7 +1702,7 @@ Isoforms diff expressed between D and ND for head or ovary.
 
 * Head has more pathways than ovaries
   * more genes downregulated
-* 
+* ​
 
 **Table 4. Gene-level expression** 
 
@@ -1824,7 +1822,7 @@ cp /data/scripts/bwaaln.sh .
 
 ​```
 #!/bin/bash 
- 
+
 # To run from present directory and save output: ./bwaaln.sh > output.bwaaln.txt 
 
 myLeft='20_5-14_H_0_R1_clean_paired.fa'
@@ -1844,7 +1842,7 @@ bwa sampe -r '@RG\tID:'"$myShort"'\tSM:'"$myShort"'\tPL:Illumina' \
         -P /data/project_data/assembly/longest_orfs.cds $myLeft".sai" $myRight".sai" \
         /data/project_data/fastq/cleanreads/$myLeft \
         /data/project_data/fastq/cleanreads/$myRight > $myShort"_bwaaln.sam"
-        
+
 ​```
 
 * Options for bwa align
@@ -1885,7 +1883,7 @@ Options: -n NUM    max #diff (int) or missing prob under 0.02 err rate (float) [
 
 * Run default parameters 
   * Only thing that would change is altering the maximum SNP differences  between mapping sequence to reference sequence
-  * 
+  * ​
 * ==Should end up with `.sai` files!!!==
 
 output:

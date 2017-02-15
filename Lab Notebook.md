@@ -30,7 +30,7 @@ pwd = tells me where I am, e.g. /users/l|c/lcaicedo (l|c means name broken into 
 
 mkdir = make a new folder, e.g.. mkdir mydata
 
-cd foldername = move within a directory
+**cd foldername** = move within a directory
 
 cd /data/ = goes to most basal shared space (if i need to make a copy for myself)
 
@@ -177,3 +177,25 @@ to run and copy output a text (log file) into scripts folder
 when done I should have a .sam (sequence alignment file)
 
 ​	FLAG = how well it mapped 
+
+---
+
+02/15/2017
+
+~/ = to go to my directory
+
+cd scripts
+
+Shows what is in the folder: 
+
+total 1932280
+
+-rw-r--r--. 1 lcaicedo users 1926280714 Feb 13 11:14 07_5-11_S_4_bwaaln.sam
+
+-rw-r--r--. 1 lcaicedo users   25887148 Feb 13 11:11 07_5-11_S_4_R1.fq.gz_left_clean_paired.fq.sai
+
+-rw-r--r--. 1 lcaicedo users   26467948 Feb 13 11:13 07_5-11_S_4_R2.fq.gz_right_clean_paired.fq.sai
+
+-rwxr-xr-x. 1 lcaicedo users        903 Feb 13 11:07 bwaaln_lc.sh
+
+-rw-r--r--. 1 lcaicedo users        835 Feb  8 10:44 cd

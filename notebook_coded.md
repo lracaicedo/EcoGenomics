@@ -423,7 +423,6 @@ A) Background
 
   - migration patterns
 
-     
 
 - Limitations
 
@@ -501,5 +500,102 @@ THM:
 - Genes as hubs of gene expression networks
 - ​
 
- 
+
+_______
+
+02/15/2017
+
+
+
+Info Update: SNPs & Population Genomics
+
+
+
+SNP data- from expressed sequences: To overcome drawbacks of using genomic data ( is this functionally relevant?)
+
+<u>Methods</u>
+
+1) Tissue: breadth of tissue from multiple development stages (captures variation). Issue = exon skipping.
+
+2) Pool & Sequence libraries: ~ 30-100m paired-end long reads
+
+3) Process raw sequence data: important for SNP detection
+
+4) Digital Normalization: to remove high coverage reads & associated errors. Reduces sampling variation, and no quantitative info. 
+
+5) Assemble cleaned paired long reads 
+
+6) Prune: reduce DNA contamination, non-coding RNA, gen fragments
+
+7) Assembly evaluation: If Reference Genome use, if not use COGS
+
+8) Next: SNP detection
+
+Software that looks for constant patterns of sequence variation (to reduce errors without removing SNPS)
+
+Problems:
+
+- Sequence error : eliminated SNPs of low frequency
+- Artifacts caused InDels: filter SNP clusters near INDELS, can also use Quality scores
+
+9) Validation:
+
+Primers, sequencing, mass spectrometry
+
+<u>Applications:</u>
+
+- Different in population structure
+- Natural Selection acting on a particular loci
+
+<u>Outliers:</u> for a given locus, what is the level of differentiation compared to difference across genome? (use outliers)
+
+- on a graph of frequency vs. divergence Fst: a normal distribution, on tail there will be directional selection. (really high values of Fst)
+
+<u>Non-outliers</u>
+
+- test high Fst loci for other features associated with selection
+  - fitness 
+  - enrichment for certain funtional roles
+
+— What to do if you don't have mult. populations? use other footprints (not Fst) 
+
+<u>Glossary</u>
+
+SNPs: Single nucleotide polymorphism single base difers between 2 genomes
+
+InDels: Insertion/deletions, single base has been deleted/inserted into one genome relative to another.
+
+Fst: % of genetic material explained by diggerences among populations (in this case all loci). only if you have mult pops. 
+
+##### Paper discussion : led by Andrew
+
+clinal variation: varies by a gradient, in this case 
+
+diapause: developmental quiescence, inactive stage. could happen on any life stage:
+
+​	caused by: temperature variation, photoperiods
+
+Are these SNPS associated with this diapause?
+
+Methods:
+
+50 isofemale lines (maintain genotype)
+
+Treatment: decreased temp and photoperiod
+
+Replicates: Diapause, NonDiapause 2 tissues: head and ovary
+
+isoform: splice variant of the same gene
+
+Moran's I = how samples that are close in space are functionally similar. 
+
+Results:
+
+Fig 1: dif in gene expression between D and ND between each tissue. 
+
+RPKM = FPKM: normalized read by lenght of the transcript, and how much you sequenced was sampled. scale the reads by two factors
+
+Fig 3: DE genes (patterns) associated with their location in chromosome neighborhoods. Maybe related to chromatin structure?
+
+enrichment: in which genes is it enriched in...
 
