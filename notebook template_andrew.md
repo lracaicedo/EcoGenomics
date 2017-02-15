@@ -1,4 +1,4 @@
-```
+
 # 2017 Ecological Genomics Course
 
 ### Author: ANTdrew D. Nguyen     
@@ -2085,4 +2085,3 @@ J00160:63:HHHT2BBXX:4:2228:30168:49089	141	*	0	0	*	GAGTTTAAGCATTTCAAAGTGAAAAAGCG
 ### Page 60:
 
 ------
-```
