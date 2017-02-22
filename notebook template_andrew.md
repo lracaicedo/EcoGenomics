@@ -5,24 +5,23 @@
 
 
 ## Overall Description of notebook      
-I am the teaching assistant, but I will follow the tutorials and log what I've done here. 
+Here you can see my online notebook for the Ecological Genomics course offered for the Spring of 2017. I will take notes on themes on the subject, paper discussions and methods discussed on the lab portion of the class. 
 
 ## Date started: (2017-01-18)   
-## Date end:   ongoing    
+## Date end:   -    
 
-## Philosophy   
-Science should be reproducible and one of the best ways to achieve this is by logging research activities in a notebook. Because science/biology has increasingly become computational, it is easier to document computational projects in an electronic form, which can be shared online through Github.    
+
 
 
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.  
 
 
-### Table of contents for 60 entries (Format is *Page: Date(with year-month-day). Title*)        
-* [Page 1: 2017-01-18](#id-section1). First class; intros
-* [Page 2: 2017-01-20](#id-section2). Readings for 2017-01-23 Monday    
-* [Page 3: 2017-01-23](#id-section3). Week 2, Day 2, course notes
-* [Page 4: 2017-01-25](#id-section4) . Week 2, Day 3, class notes (paper discussions and student project development)
-* [Page 5: 2017-01-30](#id-section5). Week 3, Day 4, class notes , Group presentations of project ideas
+### Table of contents        
+* [Page 1: 2017-01-18](#id-section1). Introduction to Ecological Genomics
+* [Page 2: 2017-01-20](#id-section2). Day 2 (Info update rubric, course notes, paper discussion)
+* [Page 3: 2017-01-25](#id-section3). Day 3
+* [Page 4: 2017-01-30](#id-section4) . Day 4: Group projects
+* [Page 5: 2017-02-01](#id-section5). Week 3, Day 4, class notes , Group presentations of project ideas
 * [Page 6: 2017-02-01](#id-section6). Week 3, Day 5, command line stuff
 * [Page 7: 2017-02-03](#id-section7). Installing trinity onto UVM cluster
 * [Page 8: 2017-02-06](#id-section8). Week 4, Day 6, RNA-seq
@@ -81,936 +80,389 @@ Science should be reproducible and one of the best ways to achieve this is by lo
 
 ------
 <div id='id-section1'/>
-### Page 1: 2016-07-18. Ecological genomics, first class
+### Page 1: 2016-01-18. Ecological genomics: Introduction
 
-### **Steve and Melissa's intro**    
-* Steve: It is a young field, trying to establish it's own identity    
-  * Ecological genomics institute, KSU: emphasis on adaptation to environment   
-  * Gordon Research Conference: Integrating different levels of biological organization on **ANY SYSTEM**; approach and tool focused! Field going towards new data and new analytic techniques  
-  * Intro to eco genomics, oxford press; Using technology to address ecological issues such as nutrient cycling, population structure, life history vairation , trophic interaction, stress responess, and adpatation to environmental change   
+#### **Uses**    
+- Understand the genetic source of adaptations
+- Approaches and tools for studying relationship: <u>genome/phenotype/environment</u>
+  - Ecological issues such as nutrient cycling, population structure, life history vairation , trophic interaction, stress responess, and adpatation to environmental change 
+- Environmental change and adaptation studies
 
-* DATA driven: next gen sequencing revolutionizes biology
-  * creats a new problem--large datasets!!! how to make sense? 
-  * not data limited and potentially computationally limited   
+* On any system, not only model organisms 
+* Next-gen sequencing: increasingly useful but with huge datasets (computational challenge)    
 
-* Where is the field headed    
-  * Molecular Ecology Journal(flagship journal representative o the field)  
-    * ALL systems:  corals, protists, daphnia, coral, lemurs, dandelions, steve studies trees 
-    * model organism constraint disappearing!   
-  * What types of questions are asked?  
-    * How do genes correspond with circadian rythm?  
-    * How does the microbiome influence the organism? 
-    * How does epigenetic variation influence evolutionary responses? or contribute to phenotypic variation?  
-    * What are the patterns of genetic diversity that can give us insights on population dynamics?  
-    * What are constraints and tradeoffs and genetic mechanisms of traits? 
+#### Questions
 
-* Methods?   
-  * De novo genome assembly; sequencing a DNA book from scratch!!    
-    * RNA-seq; transcriptomic profiling     
-  * 16 s metagenomic sequencing      
-  * Rad-seq/GBS for estiamting population structure and genetic diversity     
+- Which genes are expressed at certain times?
+- What is the influence of the microbiome?
+- What can we find on environmental samples through metagenomes?
+- What is the influence of epigenetics on evolution? (independence from genetic code)
+- What are the patterns of genetic diversity for Popgen?
+- What are the constraints of genomes?
 
-* Proccesses studied?    
-  * All evo and eco stuff; speciation, hybridization, local adaptation, genetic basis of local adaptation, genetic architecture of complex phenotypes, genes controlling host-pathogen evolutionary dynamics, pop structure, gene flow, epigenetics     
+#### Methods
 
-* Goals of the course!    
-  1. Learn how ecology and genomes shape each other   
-  2. Think creatively about major questions, and pose testable hypotheses to those questions using appropriate genomic data    
-  3. Think about careful experimental design and statistical analysis---shown by reading papers   
-  4. Achive working knowledge and level of comfort for bioinformatics routines for ecological genomics studies   
+- De-novo genome assembly
+- Differential expression analysis: RNA-Seq
+- Microbial community diversity, 16S metagenomic sequencing
+- If reduced genome or one sample, RAD-Seq
 
-  ### Melissa background  
+#### Proccesses  studied
 
-**Background, what drove Melissa and Steve to ecological genomics?**       
+* Speciation, hybridization
+* Local adaptations        
 
-Melissa read a cool paper that scales from analyzing a few loci to the whole genome.   
-
-One figure popped out at her, FST (developed by Sewell Wright) histogram.   FST of 1= complete differentiation, FST of 0 = no diff. FST described as **Alleles in space**. From this histogram, Melissa was struck by how you can separate out neutral from selective ones.  
-
-Melissa has a data set with 96 sea stars and then the 16s microbiome. Would be cool to see if there is heritability in some bactera
-
-### Steve background   
-
-* Inspired by Yanis Antonivics (an **OG**)   
-* At the time, just so stories: **Adaptatationist programme**    
-  * Just go out and go by feeling in a natural history way and prescribe an adaptation story   
-  * Janis wrote a creed to quantify the operational relationship between traits, environment, and genetics     
-* Yanis was on Steve's committee and Steve was interested in adaptation with respect to invasion biology because organisms need to respond to novel environments     
-  * Phenotypes can relate to the environment, but what is the genetic basis of local adaptation (in situ)? There are other confounding issues: demographic effects, plasticity     
-* Steve thinks about environment-phenotype-genetics triangle. Basically a path diagram that feeds back on each other.    
-  * Relationship between genes and phenotype ---GWAS (Genome wide association study)    
-  * Relationship between genetics and environment --- Fst, clines between allele frequencies and environment    
-* Invasion history is tough because of demographic history    
-* He decided to focus on trees; large population size, straddle huge environmental gradients so the opportunity for selection is high   
-  * positive relationship between Growing season length and traits    
-  * Did a  reciprocal transplant of different populations to identify the extent of local adaptation in large established common gardens    
-  * SK does GBS (genotype by sequencing)      
-  * Problem with field: validating key gene candidates            
-
+##### Melissa's and Steve's stories [see Andrew's notes] (https://github.com/adnguyen/Notebooks_and_Protocols/blob/master/2017_Eco_Gen_ANBE_nb.md#id-section1)  
 
 ------
 <div id='id-section2'/>
-### Page 2: 2017-01-20. Readings for 2017-01-25 Monday    
 
-First, showing how I structured the readings in the repo: 
+### Page 2: 2017-01-23. Day 2, course notes
 
-1. In the terminal, change directory into your repo
+#### Info update rubric
 
-​```
-cd Teaching/2017_Ecological_Genomics/
-​```
+- Outline : can give handouts
+- 20 minutes
+- learning/ engaging activity
+- use of board effectively
+- take home messages (star)
+- examples from literature (beyond those given onBb)
+- Glossary is built here
 
-For fun, list the items in your repo
-​```
-ls
-01_data				Online_notebook.md
-02_scripts			README.md
-03_results_output		index.Rmd
-04_tutorials			index.html
-2017_Ecological_Genomics.Rproj	index.pdf
-ANBE_notebook.md		papers
+#### <u>Melissa's Info update</u>
 
-​```
+##### Outline
 
-2. Now use tree command to extract hierarchical layout     
+1. Advances in Seq. Technologies
+2. Range of Applications
+3. General Library Prep. Workflow
+4. Sequencing-by-synthesis (SBS)
+5. Other Technologies
+6. Learning Activity
 
-​```
-tree
-.
-├── 01_data
-├── 02_scripts
-│   └── RasterPCA_demo.Rmd
-├── 03_results_output
-│   └── RasterPCA_demo.html
-├── 04_tutorials
-├── 2017_Ecological_Genomics.Rproj
-├── ANBE_notebook.md
-├── Online_notebook.md
-├── README.md
-├── index.Rmd
-├── index.html
-├── index.pdf
-└── papers
-    └── 01_week
-        └── 01_Day_Monday_2017-01-25
-            ├── Ellegren_2014.pdf
-            ├── Lee_gould_stinchcombe_2014_AoB_PLANTS.pdf
-            └── Rockman-2012-Evolution.pdf
 
-​```
 
-So my plan is to place my papers in the "papers" directory, within a particular week, and then within a particular day number of the course that is annotated with the actual day and date.  
+1) Sequencing Technologies
 
-### Now paper notes:    
+- Human Genome Project: 2001-2003 ABI – Sanger, took 15 yearsand sequenced 1 genome, $3B cost
+- Development of Hi Seq Tten in 2014 by **Ilumina**. This tool 1 day and 45 whole human genomes and cost $1000each. Process: Microarray size slide: Ilumina flow cell with 8 lanes werecapillaries are sampled by billions. 
 
-1. Genome Sequencing and population genomics in non-model organisms ; Hans Ellegren    
+2) Applications: **90%global data**, mostly Ilumina seq. 
 
-   * 3 important achievements in bio over the past century: modern synthesis(evolutionary theory), mol bio, and "omics" era   
-     * Good example of how biologists can get carried away with "omics" or "omes"   
-     * peptidome, degradome,     
-   * Basically,  because we can sequence everything we can collect, we can study non-model organisms like never before.  
-   * In fact, many genomes are sequenced   
-   * Bird example: Chickens were sequenced first, then zebra finch, then a bunch of others, highlighting the rapid ability to sequence genomes   
-   * Genomic information is nice because it can tell you how loci are arranged. Example, recombination can be better studied by knowing the arrangement of chromosomes.   
-   * Having genomic sequences allows for us to compare the repertoire of genes and the actual sequences themselves. (birth and death evolutionary procceses in homologues; tests for positive selection)
+- WGS (whole genome sequencing), RNAseq, ChIPseq (Chromatinimmunoprecipitation, protein bound transcription factors), targeted/capturesequence (use of probe= stretch of DNA that you synthesize, therefore you needto know about the target)
 
-2. Identifying the genes underlying quantitative traits: a rationale for the QTP programme; Lee et al. 2014
-   * QTN = quantitative trait nucleotide; associating single nucleotides with quantitative traits    
-   * Critical question: What is the molecular basis for adaptation? particularly in non-model organisms
-   * Response to Rockman 2012 paper    
-     * Rockman's major criticisms: Effect of nucleotide on traits can be overestimated    
-       * large effect variants are rare and most complex traits are polygenic    
-   * Travisano and Shaw 2013 raise the criticism that you don't need QTN's to focus on the patterns and process of adaptation    
-     * knowing molecular basis has not illuminated the proceess of adaptation!    
-   * 5 reasons why we should care about QTNs     
-     1. Vertical Integration: nucleotide to ecosystems        
-     2. Parallel evolution and pleiotropy     
-     3. Maintenance of standing genetic variation    
-     4. Role of standing genetic variation in adaptation     
-     5. Understanding the role of genomic architecture in adaptation      
+3) Workflow
+
+- Kind of library prep to make:
+  - Where is genetic variation? (Phenotypes)
+  - number of samples: population, individual,comparative studies
+  - Model or not
+  - Demographic history of population
+  - Adaptive genetic variation
+  - Gene expression variation
+  - Determined by:
+    - length ofreads: longer reads will be easier to assemble 
+    - number of reads
+    - distribution of the reads: knowing relativeposition helps with assembly, are they randomly distributed or not
+- Steps:
+  - Extraction: DNA or RNA -> **cDNA**
+  - Fragment sample
+  - Ligate adaptors: individual barcode
+  - Add sequence adaptors
+  - PCR amplification 
+- Reduced representation
+  - RNA: coding regions
+  - GBS/RADseq:near restriction sites
+
+ 4) SBS (Sequencing by Synthesis)
+
+-      Flow cell ,has lanes and oligos (eg. P7, P5) that attaches to your DNA that has adaptors thatsample by ligation. Your DNA is attached to a sequence adaptor and may have anID barcode. Then **bridge amplification**where the pieces bend over and amplify (to copy and make signal stronger). Bridgereleased and then cluster generation (clusters of the same sequence). For eachcluster a snapshot is taken of the nucleotides, as the polymerase is adding thenucleotides. 
+
+-      PacBio: Single Molecule in Real Time. Givesreally long reads but accuracy is lower. 
+
+* Drawings on notebook*
+
+6) Learning Activity
+
+### Glossary:
+
+Ilumina reads: short (50bp), long (100,150,300 bp), 
+
+SMRT: extra long (10000 – 60000 bp). Can also be single vs.paired end. 
+
+______
+
+#### <u>Paper discussion:</u> Genome sequencing and population genomics in non-model organisms (Hans Ellegren, 2013)
+
+- Omics: when is it useful? Can be used as an unbiased view
+- Storage for genomic data! Since it should be publicly accessible (Short read archive) - NCBI
+- Quality control: files are raw, quality processing is done afterwards
+- Table 1: 2,200 update of reference genomes of eukariotes (600 on paper)
+- Great proportion of non-model organisms. Does not include transcriptomes. 
+- How do we determine what is a reference genome?  In scaffolds, not in chromosomes. There is a database to query. Sample size is 1 (not always) but how to know if it is a reference that works for a specific question?
+
+ — Next Monday: 4 Info-updates— 
 
 ------
 <div id='id-section3'/>
-### Page 3: 2017-01-23. Day 2, course notes      
 
-### Course materials    
--Papers- info updates, and discussion papers; students need to sign up   	
+### Page 3: 2017-01-25. Day 3, course notes    
 
+#### <u>Info update: QTNs</u>
 
-**Add definitions as you see it**    
+**Outline**
 
-**Info update rubric**    
-* Outline   
-* 20 min   
-* Learning/engaging activity   
-* use board effectively   
-* take home messages    
-* samples from the literature   
+1. What are QTN??
 
-### Glossary:     
+   1) QTN: "Quantitative Trait Nucleotides"
 
-*Reads*: a length of sequenced DNA      
-	* short = 50 bps; long = 100, 150, 300, 10,000-60,000 bps     
-	* could be single or pair-end ( 1 strand or both strands)    
+   ```Examples:
+   eg.
+   - flowering time: Continuos/ Quantitative traits
+   - flower colors: discreet/ Mendelian traits
+   - thermal tolerance
+   - venom potency
+   - altitude tolerance
+   - defense compounds
+   - toxin tolerance
+   - draught tolerance
+   - altitude tolerance
 
+   ```
 
-### Melissa info update: 
-1. Advances of sequencing technologies    
-2. Range of Applications   
-3. General workflow (usually involving building libraries to be sequenced )    
-4. Sequencing by synthesis (SBS)     
-5. Other technologies of SBS    
-6. Learning activity    
-
-### 1. Advances of sequencing technologies    
-
-Good example was the human genome project:   
-
-* finished in 2001 or 2003 or so   
-* used with sanger sequencing on ABI platform   
-* it took **15 years of intense effort** for 1 person's genome at the cost of $3 billion dollars
-
-Then, Illumina released Hi seq X Ten sequencer in 2014   
-* **In a single day, they could sequence 45 whole geomes for $,1000 for each!!!**   
-* 90% of global data now       
-
-* Good example of how costs went down, but data went up!     
-
-Illumina sequencing:   
-Similar to sanger but fluorescence can be observed across a whole "field".   
-
-### 2. Range of Applications     
-
-1. Whole genome sequencing    
-2. RNAseq    
-3. Chip-seq    
-4. Capture-sequencing; design probes and hybridize it with sample (it is targeted)        
+   - Quantitative and continuous
+   - Quantitative traits: you can decompose in genotypes, each genotype contributes an ammount to the phenotype. 
 
 
-### 3. General workflow (usually involving building libraries to be sequenced )    
+- Fisher: Small effect vs. long effect mutations (see notebook)
 
-Step 1: Goal-oriented; which platform to use?   
+2. Quantitative Genetic Theory of Adaptive Traits
 
-* where genetic variation is    
-  * Phenotypes     
-  * number of samples
-  * population    
-  * individual   
-  * comparative study? closely related species?    
-  * model organism or not?   
-* demographic history?     
-* adaptive gentic variation     
-* gene expression variation under common garden conditions?   
+   - Va
+   - h^2
 
+3. Methods
 
-**Trade-offs in doing the actual sequencing**   
-* length of reads     
-  * long reads are easier to assemble(piece genomic regions together)       
-* # of reads    
-  * 10 million per individual?  target capture does not need too many reads    
-* how read are distributed along the whole genome      
+   - QTL - Linkage mapping (forward genetics)
+   - GWAS- Genome-wide association studies: "fancy regression" (forward genetics)
+   - Selection scans (reverse genetics)
 
+#### Paper discussion:
 
-**Actual workflow now** 
+<u>Rockman, (directed by Allison Brody)</u>
 
-1. Extract DNA or RNA(this needs to be converted into cDNA)   
-2. Fragment sample (break it into smaller junks)    
-3. Ligate adapters on the ends 
-   * Often barcoded to identify samples/individuals      
-4. Add on sequencing adaptors      
-5. PCR amplification        
+- are QTNs useful?
 
-### 4. Sequencing by synthesis (SBS)     
+3 points presented: 
 
-1. DNA with different adapters   
-2. get loaded into 1 of 8 lanes in a flowcell   
-3. flowcell have oligos that match the sequencing adaptors; so DNA attaches to it! (P5 and P7)    
-4. Bridge amplification: bend over and amplify, back and forth, over and over    
-   * creates a clustered generation; sequence of the exact same sequence locally as a dot    
-5. Incorporates labeled A T G or C, and then images are taken across the whole flowcell  
+1. small effect are the vast majority (mendelian), while the allelic frequency we are drawing from are not the most representative. "unmeasurable interesting traits"
+2. Theory
+3. small effect alelles do not operate in the same manner: bias in effects. 
 
-**Pac-bio's platform: Single molecule real time sequencing (SMRT)**     
-1. DNA frag in a well, light penetrates in a small area to capture sequencing with long reads    
+impacts of the large effect and small effects
 
-### 6. Learning activity    
+<u>Lee et al. 2014 (directed by Lisa Chamberland)</u> 
 
-1. pair with neighbor   
-2. share ah-ha moments   
-3. discuss some useful applications    
+- Still useful, we might get to the small-effect QTNs with these methods
+
+Discussion:
+
+Use in combination with other methods
+
+Usefulness in id. If QTN's for pop structure, and the genetic basis of an adaptation that may not apply to different populations. 
+
+Is it worth it for the scope of a PhD program?
+
+Communication between findings and researchers that will use this knowledge.
 
 
-### Paper discussions  : Genome sequencing and population genomics in non-model organisms (Hans Ellegren )    
 
-* Why would we use it ?    
-* SK- we're generating tons of data, but what is the limit of space we can store it in ? (Short read archive)      
-* NCBI, who curates the data? Wild west.      
-* 10-15 gbs for 1 file of in gzip format    
-* Table 1; 2200 eukaryote genomes vs 600 listed in this paper     
-* How do people choose which genome to sequence? politics   
-* Can people ID species based on WGS?   
-* Are there multiple references genomes assembled?    
-* From a single individual, do people overlay as many omics as possible? Integrate proteome, PTMs, metabolome, phenotypes, etc    
+#### Student project introduction: Melissa 
 
-### The future! Moving forward    
-* 1 week from today, do a blitz on the different library preps (4 different ones)      
-  * 4 diff info updates    
-* 2 volunteers to discuss QTN programme.    
-* Each student, 1 discussion leader and 1 info update!   
-
-
- 
+—notes on data paper handed— 
 
 ------
 <div id='id-section4'/>
-### Page 4: 2017-01-25. Week 2, Day 3, class notes (paper discussions and student project development)
 
-**Tasks**
+### Page 4: 2017-01-30. Week 3, Day 4
 
-One of my duties is to populate the glossary on blackboard. (I'll do it here for redundancy too.)
+##### <u>Group projects</u>
 
+- Intertidal vs Subtidal: Subtidal much easier to collect because they are fully submerged. Therefore gene expression and 16S (microbiome) differences because of handling effect (could be stress responses), not using snp data. One month time lag between collections, May- June.
+- Sea-star associated Densovirus- single stranded dna virus. QPCR for all samples: negative for densovirus. Samples from epidermal tissue
+- sp. winter spawning
+- Sea-star biology: only identification juvenile vs adult not age class. Sex id. with dissection
+- RNA-seq: anything with a Poly-A tail will be amplified. Could be fungi or annelids...
 
+#### Group B: Intertidal vs. Subtidal
 
-**Restructured course layout**: 
+- gene expression and microbiome differences
 
-​```
-.
-├── 01_data
-├── 02_scripts
-│   └── RasterPCA_demo.Rmd
-├── 03_results_output
-│   └── RasterPCA_demo.html
-├── 04_tutorials
-├── 2017_Ecological_Genomics.Rproj
-├── ANBE_notebook.md
-├── Online_notebook.md
-├── README.md
-├── index.Rmd
-├── index.html
-├── index.pdf
-└── papers
-    └── 01_week
-        ├── Ellegren_2014.pdf
-        ├── Lee_gould_stinchcombe_2014_AoB_PLANTS.pdf
-        └── Rockman-2012-Evolution.pdf
- 6 directories, 12 files
-​```
+  ​
 
-It better reflects how the reading is done throughout the week.    
+Gene expression: Differences in expression between the groups (identify a treshold of (significant) expression to determine high or low expression) and then pinpoint genes of interest. Congruence and difference in the genes expressed. 
 
-### Course outline
+Level of expression of all genes by groups.Differential expression. What about house keeping genes?
 
-1. Announcements: 
-   * BB acceess: add through audit
-   * Sign-ups   
-   * Glossary: Whoever is doing info update must come up with a list of key terms!      
-2. Info update ~ QTN   
-3. Debate-style discussion 
-4. BREAK   
-5. Group project discussion!   
+Microbiome differences: ribosomal RNA , crude estimates of abundance and diversity of microbiota. <u>Community structure</u> of the micro biome (multid. scaling, or discriminant analysis).  Diversity: would decrease with illness. Hypotheses: more diverse microbiota leads to healty ind. or specific community composition towards healthy individuals. 
 
-### 1. Info update ~ QTN 
+Samples to use: Day 3 only
 
-**Q: What are QTN's (Quantitative Trait Nucleotide)?**   
+Next steps: 
 
-* **Quantitative genetic theory of adaptive traits**   
-  * Additive genetic variance and heritability 
+Lit search on Microbiome communities on sea star epidermis, wasting disease, inmune response on sea stars.
 
-QTN is the most reductionist you can get. The individual SNPs that contribute to the variation in a trait. Usually traits under selection and confer adaptation.  
+— extra notes on Handout — 
 
-Traits!
+*Write up ideas into 1 page proposal using guideline provided and integrating feedback from the discussion. Include specific samples. For Monday, MS-Word and e-mail to Steve and Melissa*
 
-	1. flowering time
-	2. flower color
-	3. thermal tolerance 
-	4. venom potency
-	5. defense or secondary compounds in plants  
-	6. toxin tolerance  
-	7. drought tolerance 
-	8. altitude tolerance (hypoxia)
 
-They are quantitative, and are continuous. They have a mean and variance. **Not descrete phenotypes**. Discrete phenotypes are mendelian (major effect loci) .   
 
-Modern synthesis (Fischer, Haldane, WRight).  Connect alleles with trait distribution. 
-
-ex:  allele:trait
-
-AA = 1
-
-Aa = 2
-
-aa = 3
-
-The difference between Aa and aa = average effects or alpha (1).
-
-AA = q^2 
-
-Aa = 2pq
-
-aa= p^2 
-
-Additive genetic variance (Va) = sum of alpha * pi and qi.   pi and qi 
-
-Vp = phenotypic variance and the Va is only a fraction. So the heritability is Va/Vp.  
-
-
-
-**What are the genes that explain this heritability? Alpha is the effect size of the QTN**
-
-Most populations are close to their adaptive peak. Imagine fitness as a fucntion of a trait, normal distribution.  Max fitness = intermediate trait is local adaptation. Change in environment will change the fitness peak. 
-
-A mutation is random, and it can move the fitness of the population up or down. This is usally a small effect mutation. But if you have a large effect mutation, then changes are, you will move down, maintain, or up, but if it pushes too far, it'll go down. It is must more effecient for the population to evolve many small effect loci.  How do we detect this?
-
-**3 main methods**
-
-1. **QTL mapping (forward genetics)**
-   * Segregating sites between 2 individuals (red vs blue) and they're diploid
-   * They're homozygous (2 extremes of trait)
-   * Take parents, cross to make F1—that are heterozygous
-   * Take F1s, and do a series of cross to produce F2
-   * The chromosomes that vary in the ancestry of different blocks(chromosome)
-   * The QTL or QTN is unknown (trait based forward genetics approach)
-   * Markers (microsats) and unlinks them (because of the crossing) 
-   * By multiple rounds of generations, then you get variation in loci size
-2. **GWAS (Genome-wide association studies) (forward genetics)**
-   * Let nature do the crosses, and sample a bunch of individuals
-   * genotype them, 
-   * Nature has been doing a similar experiment as in the QTL mapping but there are many more parents
-   * Model: Y = u + Bi x SNPi + Covariates
-     * Y = Trait 
-     * u = intercept
-     * Bi = effect size
-     * SNPi= a particular SNP
-     * Covariates = population structure 
-   * You get a manhattan plot, plotting -log(pvalue) against position
-     * High values indicate significant SNPs 
-     * usually includes several genes although it will involve many genes
-3. **Selection Scans (reverse genetics)**
-   * don't know trait, just zoom in on parts of the genome that have history of selection
-   * Sample a bunch of individuals, with a bunch of SNPs  
-   * Selective sweep, some rise in frequency and others are not  
-   * Over T generations, it could fix—DECREASING diversity 
-     * iF this varies among populations, then this could indicate selection and divergence (FST)
-     * data shows us what genes are important when we did not know *a priori*
-
-
-
-Additional notes: Mutations before selection are equal across loci and their effect sizes. So after selection, the frequency of effect sizes are concentrated on the small values(small effect sizes) and very little at the large effect size.  
-
-### 3. Debate-style discussion ("QTN programme")   
-
-2 separate groups discussions first.
-
-**Dr. Brody leading Rockman paper**: 
-
-* analogy: panning for gold, large nuggets already found, and now we're finding needles in a haystack 
-* large effect QTLs, very few cases found, but that is not most of them  
-
-3 main arguments
-
-1. LARGE effect QTLs are mendelian 
-2. Theory does 
-3. searching for QTNs may act in the same way as large effect QTL 
-
-Speciation example: Doug Schemsky
-
-They speciated because they got different pollination syndromes (changed from yellow to red). It acted like a mendelian trait. Is it important in knowning speciation?  Is it common? Speciation can be neutral just by building up different genetic interactions that leads to reproductive isolation. 
-
-**Whole group Discussion**   
-
-
-
-### 5. Student Project development 
-
-Melissa's dataset
-
-Seastar wasting disease: kills stuff, **PATHOGEN UNKNOWN** 
-
-* Some species are resistant and some rae susceptible
-* it is a generalist 
-* A couple days or even hours that a host goes from healthy to sick
-* Sickness comes in the form of losing arms, lose turgor pressure, they become droopy
-    * start off with legions and/or loss of turgor pressure
-    * loss of limbs = gravity and/or behavioral (when they move,t heir body doesn't stay together)
-    * turn into a puddle of white goo; ghostly shapes of sea stars ; so sad
-* **Potentially Densovius is causal** (maybe)
-* What factors affect the tipping point? 
-* Sampled epidermal biopsy
-    * total RNA isolation, polyA tail selection to get mRNA
-    * 300 million paired end bp sequencing
-    * took out 16s rRNA 
-
-
-**Hypotheses** 
-
-Theme: 
-
-1. What is the genetic difference related to susceptibility
-   * Int or sub tidal are more susceptible 
-   * int or sub differ in gene expression 
-2. What is the genetic basis for disease resistance? 
-   * positive selection on genes and how they're related to health/symptoms
-3. How does the microbiome contribute to seastar wasting? 
-   * microbiome differ among disease/symptoms
-     * diversity? abundance?
-4. Is there heritable genetic variation in the microbiome? 
-
-
-
-Course notes for next week:
-
-1. put picture of all of our hypotheses on the screen
-2. 4 corners of the room, put interests and groups will assemble
-3. give half of class to think through and other half to present ideas 
-4. Make students formulate questions, hypotheses, predictions, what samples
-5. Technical questions: construct assembly together? separate? Give students a canonical reference (transcriptome). let students investigate if they want to separate them. 
-6. Melissa and Melanie will do the assembly on the side.   
-7. AN will be added as adminstrator access (permission changes and stuff); software installed, 
-   * add trinity
-   * AN can install 
-8. Wednesday, hands on logging in on the server, Unix command lines  
-   * have shell, have putty
-   * connect remote machine
-   * set up home directory
-   * move around in the machine
-   * regular expression 
-   * moving , cutting, copying files
-   * transfer between server and client
-9. Look at wiki to see what we can add or subtract in terms how what commands to show  
-
-
-
-Set up new webpage for course: 
-
-1. links to tutorials
-2. scripts
-3. page with class members with hyperlinks to their github notebooks 
-4. (**Getting set up link**)New tab with resources for markdown and online notebook and typora
-5. Glossary link to blackboard
-
-
-### Changing the course material to construct a website: 
-
-​```
-.
-├── 04_tutorials
-├── 2017_Ecological_Genomics.Rproj
-├── ANBE_notebook.html
-├── ANBE_notebook.md
-├── Class_members.Rmd
-├── Class_members.html
-├── Getting_started.Rmd
-├── Getting_started.html
-├── Instructors.Rmd
-├── Instructors.html
-├── Online_notebook.md
-├── PBIO.BIO381_Spring2017_syllabus.pdf
-├── README.md
-├── Tutorials.Rmd
-├── Tutorials.html
-├── index.Rmd
-└── index.html
-
-1 directory, 16 files
-
-​```
-
-
-
-
-
-​```
-
-​```
-
-
+Wednesday: 4 library prep types Blitz
 
 ------
 <div id='id-section5'/>
-### Page 5: 2017-01-30. Week 3, Day 4, class notes , Group presentations of project ideas
+### Page 4: 2017-02-17. Day 5
+
+#### Announcements
+
+- Send link to github online notebook to adnguyen@uvm.edu, 2 "notebooks" notes and coding
+- Sign-ups
+- Project proposal due next Monday by email: one per group
+- Transcriptomics next week
 
 
 
-Melissa gave handoout for a general formula. This may help articulate and motivate and objectives  of the eco genom project. this approach can be applied to your other research projects, papers, or grants!
+#### <u>WGS</u>: Info update by me {notes on notebook}
+
+- everything
+
+#### <u>RNA-seq</u>: Info update 
+
+#### gene space expressed
+
+1. Advantage
+   1. Differential gene expression: in tissues there is variation
+   2. Allele specific expression: environmental response of adaptation
+   3. Functional relevant subset of the genome
+   4. vs. Micro-array:  RNA seq has wide range of expression value, not in micro-array. No saturation of analog-type signal (flourescent) in micro-array . Informs on spilicing events. 
+2. Limitation
+   1. Post transcriptional events not identified
+3. Work-flow
+   1. Set-up
+   2. Wet-lab
+   3. Sequencing strategy
+   4. Bio-informatics
+   5. Statistical Measures
+
+Work Flow: 
+
+1. Set-up
+
+   1. Protein coding or regulatory non-coding
+   2. Reference genome present?
+   3. Alternative splicing?
+   4. Technology for research question
+   5. Population or specific treatment?
+   6. Stat: Biological Replication
+   7. Choice of Tissue: circadian rythim. If small organism: use pooled samples
+
+2. Wet-Lab
+
+   1. Sample: RNA extraction for good yield
+
+      1. RNase free environment
+      2. Treat with DNase (to avoid DNA hybrids)
+      3. Get rid of rRNAs
+
+   2. cDNA: 5'————AAA
+
+      ​            3'————TTT oligo dT primer
+
+      ​	Reverse Transcriptase
+
+      ​	3'———TTT-5'		Library: single end and paired end
+
+      ​	5'———AAA-3'  (cDNA)
+
+   3. Platform: Pyrosequencing by Roche, Ion Torrent. GA?Hiseq by Ilumina (GC content)
+
+      1. Error Profiles of the platforms: Incorrect homopolymers
+
+      2. Sequence coverage: >100 millian bp
+
+      3. Programming
+
+         ​
+
+      Experimental Set-up -> Tissue Prep + Library -> High throughput seq. -> Transcriptome reconstruction -> Alignment of Reads: - Read qualification - Biological Influence -Marker development
+
+de novo sequencing: 
+
+. . .  . 
+
+5'(UTR) CDS___3' UTR
+
+Assembly: -^-^-^ Reconstruction and slice junction
 
 
 
-1. **The opener:** capture the attention of your audience highlighting an important area of research
-2. **Current knowledge:** What is known about this area and will facilitate your work? 
-3. **The Gap statement:** Where is the gap in the understanding? The critical missing bit of knowledge that prevents forward scientific progress? 
-4. **Objectives:** Articulate the objectives of your research- "Here we..."
-5. **Central hypothesis:** null and alternative 
-6. **How will you test this hypothesis?** How will you distinguish between alternative explanations, will you have the statistical power to do so? 
-7. **What are your expected results/outcomes?** 
+#### <u>Amplicon Sequencing</u>: one gene
 
+Def: Targeted approach for analyzing genetic variation in specific genomic regions (Amplicon= targeted gene region to be amplified via PCR w/ specific primers)
 
+- Methods
 
-Steve will be writing up projects on the board: 
+  - Libray Prep: 
 
-1. **Immune-related gene expression** 
-   * reverse pathology
-   * looking specific classes of genes
-   * a priori tests for resistance genes
-     * compare individuals that stayed healthy vs those that got sick
-     * looking at S-H transition 
-   * **Group(Name = Sherlock):** Erin, Sam, Alex, Lauren, Dr. Brody, and 
-     * Interested in reverse pathology
-     * What type of pathogens are causing immune response differences? 
-       * Viral specific, fungal specific, or bacterial specific
-       * Focus on the transitions: HS, HH, SS
-         * blocking based on time 
-         * what is the workflow? 
-           * ​
-     * Back up Q: comapre responses to another species. 
-     * Use random group of genes to use as housekeeping and control
-     * make heat map or venn diagram of differential gene expression 
-     * ​
-2. **Intertidal vs subtidal** 
-   * Genetic differences in susceptibility
-   * local adaptation? 
-   * gene expression differences
-   * **Group discussion(Name=):** Lauren, Laura, Kattia, Dr. K
-     * subtidal more susceptible than intertidal. What differences contribute to that? 
-     * Focus on GXP expression between the two groups: ID, genes that are more diff expressed and do a functional enrichment analysis (immune vs general stress response; tease apart handling and susceptibility)
-     * Focus on community structure of micro biome between the two groups: subtotal = more diversity? Equals more resilient to pathogen? Specific taxa associated with disease? 
-       * Candidate genes in stress response? They want to do  a broad survey of genes (generalized). 3 broad categories: **stress, immune, other**. 
-       * Time point? Use first time point (day3 ); potentially comparing healthy vs sick 
-       * Not looking at SNP level differences 
-       * Potentially associate gxp with micro biome ; mantel test. 
-3. **Temporal Variation** 
-   * chagnes in gene expression through time
-   * changes in microbiome through time
-   * temporal differences in H vs S
-   * **Group discussion (Name=):**
-     * change of gxp through time: compare HH vs HS (that made it to day 15)
-       * ignore SS 
-       * for each time point, what genes are differentially expressed between HH and HS
-       * ID'ing those genes 
-     * What is causing sickness? and how organisms are affected by it?(this is focus)
-     * stability of gxp for HH vs HS; House keeping genes? 
-     * Which ones are varying over time? 
-     * **functional enrichment for varying or stable through time**
-     * ​
-4. **Heritability of microbiome**
-   * compare microbial commuity to host individual relatedness
-5. **Comparison within the intertidal group**
-   * genetic differences ( 3 gropus of individual)
-   * delta in microbiome
-   * **Group discussion (Name=Rising starfish ):**
-     * Intertidal group only: control for the handling stress
-     * Want to do is access genomic differences (SNP data) between individuals that stayed healthy. HH, vs Sick
-       * Differences between intertidal and subtidal 
-     * Genetic basis with respect to susceptibilty 
-     * Look at micro biome: microbiome composition of Healthy vs Sick
-     * Microbiome changes across each time point for all of the individuals 
-     * one specific group of microbes that are found in healthy that are lacking in the sick(indicator taxa)
-       * aides in resilience or susceptibility 
-     * Thinking about all time points(or we can start first day) 
-     * How many OTUs? > 100s
-     * Rare taxa might drop out? 
-     * Finding diffs
-       * check allele frequency differences among sick and healthy 
-       * Can do PCA  or discriminant analysis (DAPC)
-       * FST method
+    - Extract DNA (specific region)
+    - PCR 1 (16S) rRNA: Amplify gene, specific primers. —> Clean (use a gel) and can extract through the gel or use column and sequence if ok if not: —> PCR 2: barcodes and adaptors —> Clean again —> Pool —> Sequence
 
-### Assignment:
+  - Sequencing
 
-*As a group, write up 1 page proposal following the guideline above. Integrate feedback. Due next Monday. We will give additional and formal feedback in the form of writing.* 
+    - Platforms: 454, MiSeq (Ilumina)
 
-Email, MS word
+  - Data Analysis (for 16S)
 
-List all the exact sample names too
+    - Trim adaptor sequence (e.g.. AGGTTT 7bp)
+    - Align Data: use conserved areas, tell your program the seq to use 
 
+    ​
 
+- Applications
 
-**For wednesday:**
+  - Id species
+  - one gene of interest
+  - Benefits: if you know the gene you want, you save time and money,
 
-**First half-** We're going to do a bioblitz of library prep types. Learn more about how libraries are made and what data they produced: WGS, RNA-seq, GBS(rad-seq), Amplicon-seq. No discussion, just 4 INFO UPDATES(20 minutes each).
+- Limitations: 
 
+  - Computational
 
+#### <u>GBS</u>: 
 
-**Second half**- logging into the server. Unix command line stuff. Bring your computer. Have software installed (Putty in Windows). File transfer client 
+- Genotyping by sequencing at the same time (before this you didn't have to develop primers and then sequence). between RNA-seq and Amplicons
 
-### Admin stuff
+"Reduced Representation"
 
+<u>RAD seq</u>: Resticton enzyme assisted DNA sequencing
 
-
-**Logging into the cluster:** 
-
-
-
-​```
-ssh adnguyen@pbio381.uvm.edu
-​```
-
-
-
-Going in to the root: 
-
-
-
-​```
-[adnguyen@pbio381 ~]$ cd /
-[adnguyen@pbio381 /]$ ls
-autorelabel  boot  dev  home  lib64  mnt  opt   root  sbin  sys  users  var
-bin          data  etc  lib   media  nsr  proc  run   srv   tmp  usr
-​```
-
-
-
-Stuff is stored on the data/ directory.  Let's look inside
-
-​```
-
-[adnguyen@pbio381 /]$ cd data/
-[adnguyen@pbio381 data]$ ls
-databases     packages  project_data  temp_data
-example_data  popgen    scripts       users
-
-​```
-
-**Notes**: Stuff that needs to be installed, goes into the popgen folder
-
-
-
-### Repeated measures anova or time series of differential gene expression 
-
-We need to figure out how to do this. 
-
-
+- Lots of individuals from 
+- lots of SNPs across the genome
+- Don't care about specific genes
 
 
 
 ------
 <div id='id-section6'/>
-### Page 6: 2017-02-01. Week 3, Day 5, info-updates; command line unix tutorial 
+### Page 5: 2017-02-06. Day 6 
 
-## Announcements
-
-1. <usStarters</u>
-   * Send link to Github notebook to Antdrew (adnguyen@uvm.edu)
-   * sign-ups (folkds sitting in , too!)
-   * Project proposals due by email next ==Monday February 6th.==
-   * We start transcriptomics next week!
-2. <u>Info-update Blitz</u>
-3. <u>Unix tutorial</u> 
-
-### <u>2. Info Updates</u>
-
-* <u>Whole genome sequencing</u> 
-  * **applications**
-    * high power and high resolution for pop gen, effective pop size, genetic relatedness, inbreeding, admixture events, conservations(monitoring or control breeding)
-    * new ones too! screen for adaptive potential, inbreeding depression, impacts of genetic variation, plastic responses
-    * Needs $, computational expertise (cluster, command line, python/perl)
-    * ==Limitations==
-      * Polymorphic genes: core genes that are highly conserved
-      * Paralog 
-      * Rapidly evolving genes (poor representation)
-      * Large gene families
-      * Using 1 individual (does not capture the diversity of the species)
-      * Pool samples is a possibility
-      * **Not really whole genome!!**; some parts cant be sequenced, heterochromatic regions and highly repetitive regions
-  * **Prior expectations**
-    * Reference genome? 
-      * No = de novo assembly
-      * Yes = map reads to it
-  * **Methods**
-    * Platforms:
-      * Short reads: Illumina (150bp), Solid (50bp)
-      * Longer reads: Pacific bioscience (5kb); Ion torrent (~500 bps)
-    * <u>Knowing your organism!</u>
-      * Genome size! (K-mer approach: unique element of DNA seq length)
-      * Know repetitive content and error rates of sequencing
-        * GC content too
-      * Degree of Genome duplication
-
-​```mermaid
-graph LR
-
-A{Genome?}
-
-A -->|No| B[De novo assembly]
-
-A -->|Yes| C[ YOu good]
-
-​```
-
-**More methods:** 
-
-* Labby stuff 
-  * high quality, avoid energetic active  tissue (mitochondria may mess up depth)
-  * avoid gut and skin
-  * Quantity: 1 -6 ug(short)
-  * Library prep
-    * single pair, paired end or mate-pair (shotgun sequencing) 
-    * assemble contigs and map to scaffolds
-* Computational stuff
-  * De novo, use algorithms to maximize accuracy in assembly
-  * Annotate; automate, manually
-
-
-
-* **RNA-seq**
-  * Advantages: 
-    * Diff gene expression
-    * Allele-specific expression from environmental response or adaptive significance
-    * Gives reliable and relevent subset of the genome
-    * Wider dynamic range than micro-arrays
-    * Can give info on splicing events
-  * ==Limitations==
-    * some transcripts may not be reflected in the protein abundance
-  * Workflow
-    * <u>Considerations:</u>
-      * prot coding or regulatory non coding?
-      * ref genome?
-      * alt splicing?
-      * tech?
-      * population or treatment specific 
-      * Choice of tissue type
-        * Small organisms- pool organisms
-      * Biological replicates!?
-    * <u>Wet lab</u>
-      * RNASE free; DNASE free (nuclease free)
-      * Get rid of ribosomal RNA; so enrich for poly-AAA tails
-      * Single end or paired end 
-    * <u>Sequencing platforms</u>
-      * Roche 454 sequencing - out of date
-      * Hi-seq by Illumina
-      * Think about error profiles
-      * coverage (100 million bps with  > 100 bps per read )
-    * <u>Computational</u>
-      * Programming: Unix , python, R
-      * De novo assembly: consruct contigs (stretches of RNA)
-      * Map to reference genome!
+#### <u>Info update: RNA-seq</u> 
 
 
 
 
 
-
-
-​```mermaid
-graph TD
-A(Purpose and Experimental Set up) --> B(Tissue Prep + Library)
-B --> C(High throughput sequencing)
-C --> D(Transcriptome assembly construction)
-D --> E(Align reads!)
-E --> F(Read quantification, marker development)
-F --> G(Biological inferences)
-​```
-
-* **<u>Amplicon-seq</u>** (Hannah): 16s rRNA as example - IDs prokaryotes such as bacteria (18s r RNA, fungi, protozoa)
-  * Methods
-    * Library prep 
-      * extract —> check quality and quantity —> pcr with specific primers
-    * sequencing
-      * 200-600 bps
-    * data analysis
-      * Learning activity
-  * Applications
-
-
-
-==Workflow==
-
-
-
-​```mermaid
-graph TD
-A{Extract DNA} --> B(check quality and quantity)
-B --> C(PCR with specific primers)
-C --> D(Clean up PCR product)
-D --> Z(Run gel and cut out band)
-D --> T(Or run it through a column)
-Z --> Y(Second PCR: barcode and add adaptors)
-T --> Y(Second PCR: barcode and add adaptors)
-Y --> N(Clean again and check quality)
-N --> L{Nex-gen Sequencing}
-​```
-
-* Data analysis ; where you spend most of your time!
-
-​```mermaid
-graph TD
-A{Take raw reads} --> B(QC)
-B --> C[Trim adaptors]
-C --> D(Align Sequences!)
-​```
-
-
-
-* Applications:
-  * Known sequences saves you time
-  * ID species 
-
-
-
-<u>Glossary</u>
-
-Amplicon-seq: targeted approach for analyzing genetic variation in a specifc genomic region 
-
-Amplicon: Targeted gene (region) to abe amplified via pca with specific primers
-
-
-
-* *<u>GBS or Rad-seq</u>**
-
-There is a continuum in how much sequence you can get (completeness of samples):
-
-​```mermaid
-graph LR
-A{WGS} --> B(RNA-seq)
-B --> Amplicon-seq
-​```
-
-* Trade off between sampling and completeness. 
-* GBS falls between RNA-seq and Amplicon-Seq. 
-* Good for population geneticists
-* Goals:
-  * Lots of individuals
-  * Lots of SNPs across the genome
-  * Don't care about specific genes
-  * Dont need complete genome sequence
-* Genotyping-by-sequencing(GBS) or Restriction Assisted DNA -seqencing (RAD-seq)
-* Cut up with restriction enzymes,
-* Sequence with single ends
-
-
-
-### 3. Tutorials reference [page](https://adnguyen.github.io/2017_Ecological_Genomics/Tutorials.html)
-
-* Cluster (Shared resource): 
-  * 24 CPU cores! 
-  * 32 GB of RAM
-  * maintained by IT
-  * 1 TB harddrive 
-  * THink about other people
-* Logging into the server: 
-  * Everybody has a home directory (~/)
-
-
-
-* Finding out where you are?
-
-
-
-​```
-
-​```
-
-​```UNIX
-[adnguyen@pbio381 ~]$ pwd
-/users/a/d/adnguyen
-​```
-
-
-
-* copying the data file
-
-
-
-​```
-cp /data/project_data/ssw_samples.txt .
-​```
 
 ------
 <div id='id-section7'/>

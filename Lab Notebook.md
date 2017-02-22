@@ -182,20 +182,108 @@ when done I should have a .sam (sequence alignment file)
 
 02/15/2017
 
+**Lab notebook tutorial:**
+
+Typora: Command / = lets you togle back and forth from markdown to how it will look. 
+
+To change Andrew's template use Typora, then use GitHub desktop and commit changes to master, then sync. 
+
+____ send links to Andrew by Wednesday____ 
+
+
+
 ~/ = to go to my directory
 
 cd scripts
 
 Shows what is in the folder: 
 
+```R
 total 1932280
 
--rw-r--r--. 1 lcaicedo users 1926280714 Feb 13 11:14 07_5-11_S_4_bwaaln.sam
+-rw-r--r--. 1 lcaicedo users 1926280714 Feb 13 11:14 075-11S4bwaaln.sam
 
--rw-r--r--. 1 lcaicedo users   25887148 Feb 13 11:11 07_5-11_S_4_R1.fq.gz_left_clean_paired.fq.sai
+-rw-r--r--. 1 lcaicedo users   25887148 Feb 13 11:11 075-11S4R1.fq.gz_left_clean_paired.fq.sai
 
--rw-r--r--. 1 lcaicedo users   26467948 Feb 13 11:13 07_5-11_S_4_R2.fq.gz_right_clean_paired.fq.sai
+-rw-r--r--. 1 lcaicedo users   26467948 Feb 13 11:13 075-11S4R2.fq.gz_right_clean_paired.fq.sai
 
 -rwxr-xr-x. 1 lcaicedo users        903 Feb 13 11:07 bwaaln_lc.sh
 
 -rw-r--r--. 1 lcaicedo users        835 Feb  8 10:44 cd
+
+```
+
+
+
+I have a SAM file 
+
+To save tail: -n 100 07_05-11 _ S _ 4_bwaaln.sam > tail.sam
+
+To open the tail: vim tail.sam
+
+:set nowrap
+
+```R
+[lcaicedo@pbio381 scripts]$ tail -n 100 07_5-11_S_4_bwaaln.sam > tail.sam
+[lcaicedo@pbio381 scripts]$ vim tail.sam
+
+```
+
+$ = to get to end in vim (where Tags are)
+
+Tags to look for:
+
+NM= edit distance
+
+MD= mismatching positions/bases
+
+X0= number of best hits
+
+SAM files:
+
+
+
+If seq don't map uniquely, they are discarded
+
+```R
+$ grep -c XT:A:U 07_5-11_S_4_bwaaln.sam 
+648279
+$ grep -c X0:i:1 07_5-11_S_4_bwaaln.sam 
+650436
+```
+
+How many genes map to it? Use of python script
+
+takes SAM file and counts how many reads uniquely mapped to reference sequence
+
+Renaming of files
+
+```R
+sed -i 's/::/\_/g' 07_5-11_S_4_bwaaln.sam 
+```
+
+sed = 
+
+'s = search
+
+/::/ = find
+
+/\ _ / = replace
+
+Primarily interested in UniqueTotalReads 
+
+```R
+#Go to the main directory and copy the script to my directory's scripts folder
+cd /data/scripts
+cp countxpression_pe.py ~/scripts      #or copy to your directory with the .sam file
+
+#On my directory, inside scripts (w SAM file), run the python script
+python countxpression_pe.py 20 35 countstatssummary.txt YOURFILENAME.sam
+```
+
+only pay attention to quality scores between 20 and 35
+
+
+
+
+
