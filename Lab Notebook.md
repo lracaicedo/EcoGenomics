@@ -283,7 +283,134 @@ python countxpression_pe.py 20 35 countstatssummary.txt YOURFILENAME.sam
 
 only pay attention to quality scores between 20 and 35
 
+_____
+
+02/22/2017
+
+Navigate to data folder in terminal:
+
+```R 
+cd /data/project_data/DGE
+ll
+#shows 5 files in that file
+#open up another terminal window, (navigate to the folder where I want to move it)
+cd Documents/EcoGenomics/ 
+scp lcaicedo@pbio381.uvm.edu:/data/project_data/DGE/* .
+```
+
+On Rstudio:
+
+Install DEseq package:
+
+```R
+source("https://bioconductor.org/biocLite.R")
+biocLite("DESeq2")
+a
+```
+
+Then open script downloaded: DESeq2_exploreSSW_trim.R
+
+___
+
+02/27/2017: New Script for edited data
+
+___
+
+03/01/2017: Discussion of the models seen in last stcript
+
+Line 225 of script: Is this interaction significant genome-wide
+
+log(Likelihood (full model) - Likelihood (reduced))
+
+​                           H,D,(not HxD)                  H,D
+
+​	= LR ~ X^2, df = # of param full - # of param reduced
+
+— Likelihood of the data given the model (sort of like Bayesian but without prior parameters)
 
 
 
 
+
+-----
+
+03/05/17
+
+we have 94 reds, but 24 samples; we need to use one of two approaches towards analyzing each sample separately:
+
+01_rep1.sam, 01_rep2.sam.. —> Merge using "samtools"
+
+or
+
+01_rep1.sam, 01_rep2.sam.. —> Call SNPs —> comare reps within individuals
+
+
+
+vim head...
+
+on vim- : set no wrap
+
+applied 2 filters: any genotypes probablity called less than 95%
+
+```R
+vcftools --vcf SSW_bamlist.txt.vcf
+```
+
+
+
+*How could we quickly find out how many SNPs were flagged as unresolved?*
+
+Filter for depth and quality
+
+```R
+grep "unres" SSW_bamlist.txt.vcf | wc
+5631864 185851488 1028494934
+grep "para" SSW_bamlist.txt.vcf | wc
+   4354  143652  795592
+```
+
+wc= word count
+
+Initial: 7.47 M
+
+unresolved: 5.63 M (5631864)
+
+parlogs: 4354
+
+remaining: 1.8 M
+
+— Anything not balletic is an error
+
+```R
+vcftools --vcf SSW_bamlist.txt.vcf --min-alleles 2 --max-alleles 2
+--vcf SSW_bamlist.txt.vcf --maf 0.02
+vcftools --vcf SSW_bamlist.txt.vcf --max-missing 0.8
+```
+
+allow 20% missing data
+
+So far we have selected filters independently, 
+
+place together:
+
+enter r through terminal: R
+
+```R
+> getwd()
+[1] "/data/users/l/c/lcaicedo"
+> hardy <- read.table("out.hwe", header=T)
+> str(hardy)
+'data.frame':	442 obs. of  8 variables:
+ $ CHR               : Factor w/ 111 levels "TRINITY_DN35598_c0_g1_TRINITY_DN35598_c0_g1_i1_g.5802_m.5802",..: 65 65 100 100 100 100 100 100 88 88 ...
+ $ POS               : int  4566 4665 978 1404 1722 3426 3729 3912 115 141 ...
+ $ OBS.HOM1.HET.HOM2.: Factor w/ 27 levels "10/11/3","11/0/13",..: 27 22 27 27 20 27 22 18 18 27 ...
+ $ E.HOM1.HET.HOM2.  : Factor w/ 16 levels "10.01/10.98/3.01",..: 14 12 14 14 11 14 12 10 10 14 ...
+ $ ChiSq_HWE         : num  0.0109 0.1067 0.0109 0.0109 0.1983 ...
+ $ P_HWE             : num  1 1 1 1 1 1 1 1 1 1 ...
+ $ P_HET_DEFICIT     : num  1 1 1 1 1 1 1 1 1 1 ...
+ $ P_HET_EXCESS      : num  1 0.936 1 1 0.874 ...
+> hardy[which(hardy$P_HET_EXCESS<0.001),]
+> quit()
+```
+
+ID just loci with significant variation. 

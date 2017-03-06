@@ -599,7 +599,95 @@ Fig 3: DE genes (patterns) associated with their location in chromosome neighbor
 
 enrichment: in which genes is it enriched in...
 
+_____
+
+02/27/2017
+
+Guest speaker: DR. Scott Edwards
+
+Paper Discussion: Reticulation, divergence, and the phylogeography–
+
+phylogenetics continuum - Edwards et al.
+
+_________
+
+03/01/2017
+
+#### Plan
+
+- DESeq2 wrap up (lab)
+- Homework assignment: H/S on Int. vs Sub. and another ignoring where they came from. (for entire data)
+  - Verbal description: nuts and bolts of what we have done, include models
+  - part of electronic notebook dedicated to assignment and refer to it on hw. 
+  - from seq data to expression counts
+  - due: next wednesday by end of day, word doc, email Steve, Melissa and Andrew
+- Info. Update
+
+#### Info Update: WGCNA
+
+<u>Outline</u>
+
+1. Overview of WGCNA
+2. Network construction
+3. Module Detection
+4. Incorporation of external info
+5. Topological properties
+6. Other features
+7. Limitations
+
+— 
+
+1. WGCNA = Weighted gene correlation network analysis
+   - R package: apply correlation network methods to describe correlation (co-expression) patterns among genes in micro-array samples
+2. Network construction -> Module identification -> Relationship of modules to external information -> Relationship between/within modules -> Finding key drivers in modules of interest.
+
+- Network construction: use of nodes (genes) correlated by their levels of gene expression, edge (strength of correlation in gene expression).
+
+- Package provides different co-expression measures.
+
+  - Signed networks: positive correlation in expression
+  - Unsigned networks: absolute value of correlation in expression
+
+- Matrix example: 
+
+  ​			*i*l….m (individuals)
+
+  ​			  1  2  3 …………………..
+
+  l.*..n(data)	[  (  sample's genes  )  ]
+
+  genes/traits	[ g1 g2 g3 ………………...]
+
+- Unweighted Network analysis
+
+  - hard threshold for wether genes are linked or network for expression
+  - can loose information
+
+- Weighted Network Analysis
+
+  - package allows soft or hard threshold 
+
+3. Module Detection
+
+   - removing weak connection (like collapsing branches on a tree)
 
 
+   - module: unsupervised clustering of nodes (no a priori defined gene sets)
+   - summarize the profiles of the modules -> involves eigengene
 
+4. Incorporation of external info into network
 
+   - depends on the questions
+   - Gene significance: assigns a positive number with each gene
+
+— 7. Limitations: limited to undirected networks
+
+— Glossary:
+
+- Eigengene: when a sample trait is available, one can correlate the module eigengenes with its outcome.
+
+  ​---
+  ORF= open reading frame
+  Ne
+  (pi)s
+  (pi)N
