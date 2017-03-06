@@ -30,7 +30,7 @@ Here you can see my online notebook for the Ecological Genomics course offered f
 - [Page 12: 2017-03-01](#id-section12). Day 12
 - [Page 13: 2017-03-06](#id-section13). Day 13
 - [Page 14: 2017-03-08](#id-section14). Day 14: Homework #2, Class notes
-- [Page 15 2017-03-20:](#id-section15). Day 15
+- [Page 15: 2017-03-20](#id-section15). Day 15
 - [Page 16:](#id-section16).
 - [Page 17:](#id-section17).
 - [Page 18:](#id-section18).
