@@ -38,8 +38,6 @@ cd project-data/ = look for directory nested within the one we are looking for.
 
 cp = copy
 
-
-
 mv = to move but also can be used to rename files 
 
 ​	mv samp_fullfilename newname
@@ -48,16 +46,25 @@ screen = opens a new space (window) a d type command (eg. bash bwaaln.sh) then c
 
 - to come back: screen-r (re-attach)
 
+cat filename.txt : print screen
+
+
+
+______
+
 02/06/2017
 
+```
 cd /data/project_data/fastq
+```
 
 my sample. 07 _ 5-11_ _S_ _4 _R1.fq.gz: 07 = individual, 5-11 = date, S = Sick, 1= stage1 (sampled on R1= right read bc they are paired reads) + R2 (left read)
 
 zcat - program to open zipp files
 
-- zcat FILENAME | head
-
+``` 
+zcat FILENAME | head
+```
 
 
 Quality (Phred) scores: probablity of being wrong
@@ -414,3 +421,129 @@ enter r through terminal: R
 ```
 
 ID just loci with significant variation. 
+
+______
+
+03/08/2017
+
+- login to server
+
+  ```terminal
+  cd /data/project_data/snps/reads2snps/
+   32235925 Mar  7 22:21 SSW_byind.txt.vcf.gz
+  ```
+
+  The file is a gz file, compressed file (shown in red)
+
+  ```
+  vcftools --gzvcf SSW_byind.txt.vcf.gz --min-alleles 2 --max-alleles 2 --maf 0.02 --max-missing 0.8 --recode --out ~/SSW_all_biallelic.MAF0.02.Miss0.8
+  ```
+
+  —gzvcf (i will give you a zipped version of the vcf file)
+
+  Edits: biallelic filter, biallelic freq. and eliminate missing data
+
+  output saved to home directory (~) and given the name: SSW_all_biallelic.MAF0.02.Miss0.8 
+
+  ```
+  gzip SSW_all_biallelic.MAF0.02.Miss0.8.recode.vcf
+  vcftools --gzvcf SSW_all_biallelic.MAF0.02.Miss0.8.recode.vcf.gz --hardy
+  ```
+
+  output in uncompressed format, changed to compressed
+
+  vcf tools used for HW
+
+  ``` R
+  hwe <- read.table("out.hwe", header=TRUE)
+  > str(hwe)
+  #'data.frame':	1464 obs. of  8 variables:
+  # $ CHR               : Factor w/ 363 levels #"TRINITY_DN27892_c0_g1_TRINITY_DN27892_c0_g1_i1_g.3123_m.3123#",..: 358 358 358 358 358 358 358 358 358 358 ...
+  # $ POS               : int  4733 5850 5865 5869 5874 6096 #6146 6201 6289 6325 ...
+  # $ OBS.HOM1.HET.HOM2.: Factor w/ 52 levels #"10/0/12","10/10/2",..: 36 51 36 36 36 36 36 29 36 48 ...
+  # $ E.HOM1.HET.HOM2.  : Factor w/ 22 levels #"10.23/9.55/2.23",..: 14 1 14 14 14 14 14 11 14 1 ...
+  # $ ChiSq_HWE         : num  0.0119 1.4547 0.0119 0.0119 #0.0119 ...
+  # $ P_HWE             : num  1 0.361 1 1 1 ...
+  # $ P_HET_DEFICIT     : num  1 0.954 1 1 1 ...
+  # $ P_HET_EXCESS      : num  1 0.276 1 1 1 ...
+  > summary(hwe)
+                                                               CHR      
+   TRINITY_DN45147_c0_g1_TRINITY_DN45147_c0_g1_i3_g.18680_m.18680:  34  
+   TRINITY_DN46382_c0_g1_TRINITY_DN46382_c0_g1_i1_g.22149_m.22149:  28  
+   TRINITY_DN45750_c0_g1_TRINITY_DN45750_c0_g1_i2_g.20209_m.20209:  27  
+   TRINITY_DN47302_c3_g1_TRINITY_DN47302_c3_g1_i2_g.25471_m.25471:  21  
+   TRINITY_DN46789_c1_g3_TRINITY_DN46789_c1_g3_i1_g.23393_m.23393:  20  
+   TRINITY_DN46938_c1_g1_TRINITY_DN46938_c1_g1_i1_g.24007_m.24007:  19  
+   (Other)                                                       :1315  
+        POS         OBS.HOM1.HET.HOM2.        E.HOM1.HET.HOM2.
+   Min.   :   1.0   21/1/0 :822        21.01/0.98/0.01:822    
+   1st Qu.: 179.0   20/2/0 :202        20.05/1.91/0.05:240    
+   Median : 321.0   19/3/0 : 96        19.10/2.80/0.10:103    
+   Mean   : 630.5   18/4/0 : 69        18.18/3.64/0.18: 82    
+   3rd Qu.: 728.2   17/5/0 : 44        17.28/4.43/0.28: 60    
+   Max.   :6511.0   21/0/1 : 38        16.41/5.18/0.41: 29    
+                    (Other):193        (Other)        :128    
+     ChiSq_HWE             P_HWE           P_HET_DEFICIT      
+   Min.   : 0.000094   Min.   :0.0000004   Min.   :0.0000004  
+   1st Qu.: 0.011898   1st Qu.:1.0000000   1st Qu.:1.0000000  
+   Median : 0.011898   Median :1.0000000   Median :1.0000000  
+   Mean   : 0.943981   Mean   :0.9194100   Mean   :0.9216362  
+   3rd Qu.: 0.117787   3rd Qu.:1.0000000   3rd Qu.:1.0000000  
+   Max.   :22.000000   Max.   :1.0000000   Max.   :1.0000000  
+                                                              
+    P_HET_EXCESS      
+   Min.   :0.0005731  
+   1st Qu.:0.9767442  
+   Median :1.0000000  
+   Mean   :0.9432001  
+   3rd Qu.:1.0000000  
+   Max.   :1.0000000
+
+  which(hwe$P_HET_DEFICIT<0.01) #rows with 0.01
+   hwe[which(hwe$P_HET_DEFICIT<0.01),] #just these rows but all of the columns
+  #Output SNPS in these transcripts(CHR)
+  quit()
+  ```
+
+Calculate allele frequencies on vcftools
+
+- by groups: Sick (SS, HS) and Healthy (HH)
+
+```unix
+cd /data/project_data/snps/reads2snps
+vim ssw_healthloc.txt
+#create 2 output files: for sick and healthy
+grep "SS" ssw_healthloc.txt > ~/S_OneSampPerInd.txt
+grep "HS" ssw_healthloc.txt > ~/S_OneSampPerInd.txt
+grep "HH" ssw_healthloc.txt > ~/H_OneSampPerInd.txt
+cat H_OneSampPerInd.txt 
+[lcaicedo@pbio381 ~]$ cat H_OneSampPerInd.txt 
+10	HH	INT	N
+24	HH	INT	Y
+27	HH	INT	Y
+31	HH	SUB	Y
+32	HH	SUB	Y
+33	HH	SUB	Y
+34	HH	SUB	N
+35	HH	SUB	Y
+[lcaicedo@pbio381 ~]$ cut -f 1 H_OneSampPerInd.txt > H_OneSampPerInd2.txt 
+[lcaicedo@pbio381 ~]$ cat H_OneSampPerInd2.txt 
+10
+24
+27
+31
+32
+33
+34
+35
+# use vcftools to calc allele freqs for H_OneSample...
+[lcaicedo@pbio381 ~]$ vcftools --gzvcf SSW_all_biallelic.MAF0.02.Miss0.8.recode.vcf.gz --freq2 --keep H_OneSampPerInd2.txt --out H_Allelefreq
+# edit headers
+vim H_Allelefreq.frq 
+i #to edit
+{FREQ} changed to MAJOR	MINOR
+(esc) key, :wq
+```
+
+Use R
+

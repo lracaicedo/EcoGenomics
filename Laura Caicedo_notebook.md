@@ -29,8 +29,8 @@ Here you can see my online notebook for the Ecological Genomics course offered f
 - [Page 11: 2017-02-27](#id-section11). Day 11
 - [Page 12: 2017-03-01](#id-section12). Day 12
 - [Page 13: 2017-03-06](#id-section13). Day 13
-- [Page 14: 2017-03-08](#id-section14). Day 14: Homework #2, Class notes
-- [Page 15 2017-03-20:](#id-section15). Day 15
+- [Page 14: 2017-03-08](#id-section14). Day 14
+- [Page 15 2017-03-08:](#id-section15). Homework #2
 - [Page 16:](#id-section16).
 - [Page 17:](#id-section17).
 - [Page 18:](#id-section18).
@@ -790,7 +790,7 @@ Fst: % of genetic material explained by diggerences among populations (in this c
 
 - clinal variation: varies by a gradient, in this case 
 - diapause: developmental quiescence, inactive stage. could happen on any life stage:
- - ​caused by: temperature variation, photoperiods
+- ​caused by: temperature variation, photoperiods
 - Are these SNPS associated with this diapause?
 
 <u>Methods:</u>
@@ -1000,3 +1000,270 @@ Methods (p.11): Pileline using Ilumina 454 (old)
 Fig 2: more rare things would 
 
 rare alleles most likely in heterozygotes than homozygotes
+
+-----
+
+<div id='id-section14'/>
+
+### Page 14: 2017-03-08. Day 14, Population Genomics 2
+
+Ne : Parameter that affects everything, and everything seems to affect it
+
+#### Info Update:  by Kattia
+
+<u>Rate of evolution due to relationships of effective pop size and substitution rate (NeRR)</u>
+
+Conventions:
+
+- Nc= census pop size
+- u = mutation rate
+- s = selection coefficient
+- w = fitness
+- Ne RR= relationship b/w NE and substitution rate
+- DEF= Distribution of fitness effects (each distribution has different effects)
+
+Outline:
+
+1. Ne
+2. Mutations
+   1. overview
+   2. substitutions
+   3. 5 types
+   4. variation
+   5. u
+3. NeRR + Linkage
+
+--
+
+1. Ne: 4 methods measure:
+
+- from sp life history -> Ne=4NmNf/(Nm + Nf)
+- from variance in allele frequency b/w genes
+- from genetic polymorphism data
+- correlated trait qith body size
+
+Ne: varies across species and across the genome
+
+- genome: due to
+  - genetic hitchhiking/selective sweeps: negative mut increase because they are attached to positive (when recombination doesn't happen)
+  - background selection: positive mut increase because they are attached to negative  (when recombination doesn't happen)
+  - fewer sex chromosomes than autosomes)
+
+2. Mutation can occcur:
+   - whole gene or chromosome: duplication, inversion, deletion, translocation
+   - base level:  (our focus) point mutation—> substitutions:
+     - transitions: purine to purine, pyrimidine to pyrimidine
+     - transversion: purine to pyrimidine and back
+   - 2 types: 
+     - synonymous: silent site —> DNA seq change= AA doesn't change: ~~NS~~ but by drift
+     - non synonymous: replacement mutations—> DNA sequence change = change in AA: due to NS by purifying selection and positive selection. 
+   - 5 classes: 
+     - Neutral: w (effect on fitness) ~0, <1/Ne, No effect on NS, drift
+       - most commonly used to estimate Ne
+     - Slightly deleterious and Slightly advantageous: small effect on w, n: 1/Ne, 2n: 1/2Ne. we see effect on NS and drift
+     - Deleterious: big effect on w, > 1/Ne and effect on NS, - NeRR
+     - Advantageous: big effect on w, > 1/Ne and effect on NS, + NeRR
+   - Variation due to
+     - generation time: short gen. time-> high u: + NeRR
+     - selection: lowers u
+3. NeRR + Linkage
+   - NeRR affected by: 
+     - selective sweeps
+     - clonal interference= 2 or more adaptive mutations that originate in each and compete for nex generation
+4. NeRR + Spatiotemporal variation
+5. NeRR + All mutations DEF
+6. w landscapes: alternative app. to study NeRR: trait vs. w (curve w/ optimal peak where pops further from peak have faster muntation)
+
+THM: The study of NeRR helps to understand the process that drives and limits evolution. Drift and selection are the most important forces determining NeRR. We need to work on better way to estimate Ne. With time, less $ m DNA seq will permit estimation of Ne, substitution rates, mutation rates. Most mutations are deleterious (Neutral theory: neutral mut are mostly deleterious).
+
+Haploids: (theta) Ne u ~ Pi syn
+
+Diploids: (theta) 2Ne u
+
+Diploids (separate sex): - 4Ne u = Pi syn —> Ne= Pi/ 4 u
+
+--
+
+Paper discussion: Rominguier et al. 2014
+
+Pi syn diversity across metazoa 
+
+-------
+
+<div id='id-section15'/>
+
+Page 15: 2017-03-08. Homework #2
+
+```R
+# Laura Caicedo-Quiroga
+# Script for HW#2
+
+library("DESeq2")
+
+library("ggplot2")
+
+countsTable <- read.delim('countsdata_trim2.txt', header=TRUE, stringsAsFactors=TRUE, row.names=1)
+countData <- as.matrix(countsTable)
+head(countData)
+
+conds <- read.delim("cols_data_trim.txt", header=TRUE, stringsAsFactors=TRUE, row.names=1)
+head(conds)
+colData <- as.data.frame(conds)
+head(colData)
+
+#subset intertidal and subtidal
+colDataINT <-subset(colData, colData$location=="int")
+colDataSUB <-subset(colData, colData$location=="sub")
+
+countDataINT <-countData[, which(colnames(countData) %in% row.names(colDataINT))]
+countDataSUB <-countData[, -which(colnames(countData) %in% row.names(colDataINT))]
+dim(countDataINT)
+dim(countDataSUB)
+
+#################### MODEL NUMBER 1: TEST EFFECT OF HEALTH 
+#First for Intertidal
+
+ddsINT <- DESeqDataSetFromMatrix(countData = countDataINT, colData = colDataINT, design = ~ health)
+
+dim(ddsINT)
+ddsINT <- ddsINT[ rowSums(counts(ddsINT)) > 100, ]
+dim(ddsINT)
+
+colData(ddsINT)$health <- factor(colData(ddsINT)$health, levels=c("H","S")) 
+#sets that "healthy is the reference
+
+ddsINT <- DESeq(ddsINT) 
+
+resINT <- results(ddsINT)
+resINT <- resINT[order(resINT$padj),]
+head(resINT)
+summary(resINT)
+
+#Intertidal
+plotMA(resINT, main="DESeq2INT", ylim=c(-2,2))
+
+## Check out one of the genes to see if it's behaving as expected....
+d <- plotCounts(ddsINT, gene="TRINITY_DN43080_c1_g1_TRINITY_DN43080_c1_g1_i3_g.14110_m.14110", intgroup=(c("health","day")), returnData=TRUE)
+d
+p <- ggplot(d, aes(x= health, y=count)) + theme_minimal() + theme(text = element_text(size=20), panel.grid.major = element_line(colour = "grey"))
+p <- p + geom_point(position=position_jitter(w=0.3,h=0), size = 3) + ylim(0,500)
+p
+
+## Check out one of the genes to see interaction between score, health and expression....
+d <- plotCounts(ddsINT, gene="TRINITY_DN43080_c1_g1_TRINITY_DN43080_c1_g1_i3_g.14110_m.14110", intgroup=(c("health","score")), returnData=TRUE)
+d
+p <- ggplot(d, aes(x= score, y=count, shape = health)) + theme_minimal() + theme(text = element_text(size=20), panel.grid.major = element_line(colour = "grey"))
+p <- p + geom_point(position=position_jitter(w=0.3,h=0), size = 3) 
+p
+p <- ggplot(d, aes(x=score, y=count, color=health, group=health)) 
+p <- p +  geom_point() + stat_smooth(se=FALSE,method="loess") +  scale_y_log10() + ggtitle("Intertidal")
+p
+
+#Model 2 for Subtidal
+
+ddsSUB <- DESeqDataSetFromMatrix(countData = countDataSUB, colData = colDataSUB, design = ~ health)
+
+dim(ddsSUB)
+ddsSUB <- ddsSUB[ rowSums(counts(ddsSUB)) > 100, ]
+dim(ddsSUB)
+
+colData(ddsSUB)$health <- factor(colData(ddsSUB)$health, levels=c("H","S")) 
+#sets that "healthy is the reference
+
+ddsSUB <- DESeq(ddsSUB) 
+
+resSUB <- results(ddsSUB)
+resSUB <- resSUB[order(resSUB$padj),]
+head(resSUB)
+summary(resSUB)
+
+#Subtidal
+plotMA(resSUB, main="DESeq2SUB", ylim=c(-2,2))
+
+## Check out one of the genes to see if it's behaving as expected....
+d <- plotCounts(ddsSUB, gene="TRINITY_DN42073_c0_g1_TRINITY_DN42073_c0_g1_i1_g.12173_m.12173", intgroup=(c("health","day")), returnData=TRUE)
+d
+p <- ggplot(d, aes(x= health, y=count)) + theme_minimal() + theme(text = element_text(size=20), panel.grid.major = element_line(colour = "grey"))
+p <- p + geom_point(position=position_jitter(w=0.3,h=0), size = 3) + ylim(0,500)
+p
+
+## Check out one of the genes to see interaction between score, health and expression....
+d <- plotCounts(ddsSUB, gene="TRINITY_DN42073_c0_g1_TRINITY_DN42073_c0_g1_i1_g.12173_m.12173", intgroup=(c("health","score")), returnData=TRUE)
+d
+p <- ggplot(d, aes(x= score, y=count, shape = health)) + theme_minimal() + theme(text = element_text(size=20), panel.grid.major = element_line(colour = "grey"))
+p <- p + geom_point(position=position_jitter(w=0.3,h=0), size = 3) 
+p
+p <- ggplot(d, aes(x=score, y=count, color=health, group=health)) 
+p <- p +  geom_point() + stat_smooth(se=FALSE,method="loess") +  scale_y_log10() + ggtitle("Subtidal")
+p
+
+### Model 3 accounting for location
+dds <- DESeqDataSetFromMatrix(countData = countData, colData = colData, design = ~ location + health)
+dim(dds)
+dds <- dds[ rowSums(counts(dds)) > 100, ]
+dim(dds)
+
+colData(dds)$health <- factor(colData(dds)$health, levels=c("H","S")) # (factor)sets that "healthy is the reference
+
+dds <- DESeq(dds) 
+
+res <- results(dds)
+res <- res[order(res$padj),]
+head(res)
+summary(res)
+
+# ALl accounting for location
+# MA-Plot
+plotMA(res, main="DESeq2ALL", ylim=c(-3,3.5))
+
+
+## Check out one of the genes to see if it's behaving as expected....
+d <- plotCounts(dds, gene="TRINITY_DN43080_c1_g1_TRINITY_DN43080_c1_g1_i3_g.14110_m.14110", intgroup=(c("health","day","location")), returnData=TRUE)
+d
+p <- ggplot(d, aes(x= health, y=count, shape = location)) + theme_minimal() + theme(text = element_text(size=20), panel.grid.major = element_line(colour = "grey"))
+p <- p + geom_point(position=position_jitter(w=0.3,h=0), size = 3) + ylim(0,500)
+p
+## Check out one of the genes to see interaction between score, health and expression....
+d <- plotCounts(dds, gene="TRINITY_DN43080_c1_g1_TRINITY_DN43080_c1_g1_i3_g.14110_m.14110", intgroup=(c("health","score","location")), returnData=TRUE)
+d
+p <- ggplot(d, aes(x= score, y=count, shape = health, color = location)) + theme_minimal() + theme(text = element_text(size=20), panel.grid.major = element_line(colour = "grey"))
+p <- p + geom_point(position=position_jitter(w=0.3,h=0), size = 3) 
+p
+p <- ggplot(d, aes(x=score, y=count, color=health, group=health)) 
+p <- p +  geom_point() + stat_smooth(se=FALSE,method="loess") +  scale_y_log10() + ggtitle("All")
+p
+
+
+
+############## PCA plots
+# For all
+vsd <- varianceStabilizingTransformation(dds, blind=FALSE)
+
+plotPCA(vsd, intgroup=c("score"))
+plotPCA(vsd, intgroup=c("health"))
+plotPCA(vsd, intgroup=c("day"))
+plotPCA(vsd, intgroup=c("location"))
+plotPCA(vsd, intgroup=c("health","location"))
+
+
+# For Intertidal
+vsdINT <- varianceStabilizingTransformation(ddsINT, blind=FALSE)
+
+plotPCA(vsdINT, intgroup=c("score"))
+pca2<-plotPCA(vsdINT, intgroup=c("health"))
+pca2 + ggtitle("Intertidal")
+plotPCA(vsdINT, intgroup=c("day"))
+
+
+
+# For Subtidal
+vsdSUB <- varianceStabilizingTransformation(ddsSUB, blind=FALSE)
+
+plotPCA(vsdSUB, intgroup=c("score"))
+plotPCA(vsdSUB, intgroup=c("health"))
+plotPCA(vsdSUB, intgroup=c("day"))
+
+```
+
+
+
