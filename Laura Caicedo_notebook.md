@@ -29,8 +29,13 @@ Here you can see my online notebook for the Ecological Genomics course offered f
 - [Page 11: 2017-02-27](#id-section11). Day 11
 - [Page 12: 2017-03-01](#id-section12). Day 12
 - [Page 13: 2017-03-06](#id-section13). Day 13
+<<<<<<< HEAD
 - [Page 14: 2017-03-08](#id-section14). Day 14
 - [Page 15 2017-03-08:](#id-section15). Homework #2
+=======
+- [Page 14: 2017-03-08](#id-section14). Day 14: Homework #2, Class notes
+- [Page 15: 2017-03-20](#id-section15). Day 15
+>>>>>>> origin/master
 - [Page 16:](#id-section16).
 - [Page 17:](#id-section17).
 - [Page 18:](#id-section18).
@@ -1000,6 +1005,7 @@ Methods (p.11): Pileline using Ilumina 454 (old)
 Fig 2: more rare things would 
 
 rare alleles most likely in heterozygotes than homozygotes
+<<<<<<< HEAD
 
 -----
 
@@ -1267,3 +1273,5 @@ plotPCA(vsdSUB, intgroup=c("day"))
 
 
 
+=======
+>>>>>>> origin/master
