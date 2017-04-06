@@ -34,12 +34,12 @@ Here you can see my online notebook for the Ecological Genomics course offered f
 - [Page 15: 2017-03-08](#id-section15). Day 15: Homework 2
 
 
-- [Page 16:](#id-section16).
-- [Page 17:](#id-section17).
-- [Page 18:](#id-section18).
-- [Page 19:](#id-section19).
-- [Page 20:](#id-section20).
-- [Page 21:](#id-section21).
+- [Page 16: 2017-03-20](#id-section16). Day 16
+- [Page 17: 2017-03-22](#id-section17). Day 17
+- [Page 18:2017-03-27](#id-section18).Day 18
+- [Page 19:2017-03-29](#id-section19) Day 19
+- [Page 20:2017-04-03](#id-section20) Day 20
+- [Page 21: 2017-04-05](#id-section21)Homework #3
 - [Page 22:](#id-section22).
 - [Page 23:](#id-section23).
 - [Page 24:](#id-section24).
@@ -1096,7 +1096,7 @@ Pi syn diversity across metazoa
 
 <div id='id-section15'/>
 
-Page 15: 2017-03-08. Homework #2
+### Page 15: 2017-03-08. Homework #2
 
 ```R
 # Laura Caicedo-Quiroga
@@ -1267,3 +1267,587 @@ plotPCA(vsdSUB, intgroup=c("score"))
 plotPCA(vsdSUB, intgroup=c("health"))
 plotPCA(vsdSUB, intgroup=c("day"))
 ```
+
+-------
+
+<div id='id-section16'/>
+
+### Page 16: 2017-03-20. Day 16
+
+#### <u>Info update:</u> Population Genomics and divergence (Bill Kilpatrick)
+
+Outline:
+
+1. Introduction
+2. Methods for GA estimation
+3. Methods for LA estimation
+4. Applications of GA & LA inference
+5. Future Research
+
+<u>Glossary:</u>
+
+Global Ancestry = GA,  Estimate of proportion of ancestry contributed by different Pop. - accross genome
+
+Local Ancestry = LA, Each chromosome a mosaic of segments from different ancestral populations. Goal to identify population of origin each position. 
+
+Hidden Markov Model = HMM, statistical model assumes Markov Processes with unobserved states. 
+
+2. Model Dataset, approaches to take a complex dataset and narrow it down to a number of dimensions that can explain the data. chromosomes with linked genes from smaller (ancestral) populations.
+
+- STRUCTURE: Bayesian approach, assumptions HW and Linkage equilibrium in model but not Linkage desiquilibrium. used for determinig K
+- ADMIXTURE: ML based approach, same model as Structure but in ML (same assumptions), optimizes matrices… an order of magnitude faster than Structure. 
+- Non-Parametric approaches: come from ideas of numerical analysis. 2 approaches
+  - Clustering: needs pairwise data matrices, needs clustering program and produce phonograms (trees based on overall similarity) takes data and clusters in x number of groups. 
+  - Ordination methods: eg. PCA, MSF, Principal correlation analyses.
+
+3. LA (for closely related species). Accurate when k=2 but innacurate if multiancentral populations. 
+
+- Admixed population (based on idea of having linkage desiquilibrium) 
+  - HMM: hidden Markov Model.looks a joint dependency first and then correct the probablity of ancestry using Bayes rule. 
+  - Model Link. desiq. but have disadvantages: 
+    - LAMP
+    - RFMix: uses discriminate functiona analysis, takes multivariate data and uses loading characters (haplotypes) to maximize. Fast w/out losing accuracy.
+
+Limitations: methods make assumption that we know K (number of ancestral populations) and their allele freq (ussually unknown or inaccurate). To avoid misinformation, you could run simulations of K and allele freq. (show that although it is crucial to identify K, but greatest impact if admixture is recent and less impact if old). 
+
+4. Applications
+   - GA
+     - Population assignment: identification of immigrants
+     - Forensics: Populations with a particular DNA profile. 
+   - LA
+     - mapping gene to sequence , use to localize disease linked genes to develop individualized medical treatments. 
+5. Future:
+   - Improve models of Link. desiquilibrium. 
+   - medical applications
+
+— 
+
+**Paper discussion: Gompert et al. 2014 (led by Lauren Ashlock)**
+
+3 sp. , 1 sub sp. and 2 potentially admixed pops. 
+
+Included 384 DNA libraries per lane: less reads per sample
+
+"We obtained maximum-likelihood estimates of these parameters using the expectation-maximization (EM) algorithm described by Li (2011). This method does not requiregenotype or variant calling, but instead maximizes the model likelihood with respect to the genotype likelihood."- bayesian app. 
+
+
+
+Fig 2: when there is high expected heterozygocity and low theta: expected bottleneck
+
+
+
+Fig. 7: tip of triangle, maximum possible heterozygocity
+
+______
+
+<div id='id-section17'/>
+
+### Page 17: 2017-03-22. Day 17
+
+#### <u>Info update:</u> Species Divergence w/ gene flow (Erin Keller)
+
+<u>Glossary:</u>
+
+Ascertainment bias = bias introduced by sampling design that induces a nonrandom sample. 
+
+Sympatric speciation =
+
+Allopatric speciation =
+
+Islands of differentiation = 
+
+Allele Frequency spectrum (AFS) = distribution of the counts of SNPs within a given observed frequency
+
+Gene flow = transfer of alleles/genes from one population to another
+
+Diversifying selection = selection that favors different alleles in different parts os app range
+
+1. Allopatric speciation vs Sympatric speciation
+
+   1. Allopatric
+
+   - absence of gene flow
+   - physical isolation
+   - primary way by which new  sp are formed
+
+   2. Sympatric
+      - presence of gene flow
+      - via diversifying selection
+      - selected genes appear diverging
+      - neutral alleles appear homogenous
+
+2. Inferring history of divergence
+
+   - Genomic scans: accounts for read depth
+     - Islands of differentiation: distribution of summary statistics measuring differences (Fst)
+       - high Fst: for region under selection
+     - gene vs. population trees
+       - compare assumed population tree to gene trees
+       - compare different genes 
+       - Patterson D stats: determine if there is introgression occurring (ABBA-BABA)-> like order of terminals in a tree
+         - No introgression: D=0 (ABBA=BABA)
+         - Introgression: D not equal to 0
+       - Limitations
+         - throws out data
+         - requires many genomes 
+         - same value multiple explanations
+   - Likelihood/ model-based models
+     - Allele frequency spectrum (AFS)
+       - uses count data -> distribution with characteristic shape: like a histogram of SNP frequencies of derived allele frequencies vs. counts (can be percentages)
+         - can be neutral (negative exponential), bottleneck (L shaped), selective sweeps (U shaped)
+         - Assumptions:
+           - Allele SNPs = independent
+           - free recombination among SNPS (not independent)
+           - Mutation rates are equal
+       - Limitations
+         - computationally challenging
+         - throw away data by reducing to only SNPs
+         - expensive for models with more than 3 populations
+
+
+- Genealogy sampling
+     - multiple regions -> 1 tree
+     - est. Ne, m, admixture
+     - Assumptions
+       - free recombination among genes
+       - complete likage of SNPs within a gene
+       - mutation rates varu across genome
+       - no recombinationsince common ancestor
+- Likelihood free
+     - Approx. Bayesian comp. (ABC)
+     - simulations under model of interest
+     - "easy"… not really
+
+3. Historical gene flow + LD patterns
+
+   - Distance of haplotype lengths
+     - distribution of blocks (with heterozygocity) with time
+     - recombination -> shorter fragments/time
+     - difficult to ID migrant haplotypes
+     - other demographic events-> block lengths
+   - Approximation of conditional likelihoods
+     - ancestral recombination graphs: in a gene tree a split shows recombination event. Can still measure migration a co.. using ARG graphs
+     - Limitations
+       - very complex
+       - diff. to know which ARG graph is the correct one
+
+4. NGS Advantages and Limitations
+
+   - Advantages: 
+     - entire genome, many regions sampled. large area for genome scans
+     - SNPs to get allele freq spectrum
+     - good estimations of recombination rates
+   - Limitations
+     - comp. challenging
+     - ascertainment bias
+     - throws away data that might explain differences
+
+— 
+
+##### Paper discussion: Mccooy 2014 (led by Hanna)
+
+Euphydryas gillettii: history of CO populations
+
+- Allisson Brody talks about Elbricht's experiments: they wanted to know if by dispersal limitations or habitat limitations. 
+
+Fig. 2: Models tested, to test the program's ability to uncover the true model
+
+Fig. 3: look at first column and row, just the wy and co by themselves. higher diversity and larger pop for WY. The rest shows SNPs shared among the populations, relatedness. 
+
+Fig. 4: How sensitive is the sampling to correctly selecting from distant pops. and selecting the correct split. 
+
+______
+
+<div id='id-section18'/>
+
+### Page 18: 2017-03-27. Day 18
+
+#### Info update: Selective Sweeps (Alisson Brody)
+
+Glossary:
+
+Sweep= pattern whereby a single adaptive allele "sweeps" through population; goes to fixation or nearly so.
+
+hard sweep= single adaptive allele in common genetic background
+
+soft sweep = more than one adaptive allele in diferent backgrounds
+
+- Selection
+
+- Sweeps
+  -  increase of freq of an allele, and potential hitchhiking of genes close to the allele whithin a population
+  -  genetic div. vs time (increase of selection): negative linear relationship
+  -  Hard Sweeps: in graph= steep negative decline
+  -  Soft Sweeps: more than one adaptive allele. in graph: gradual decline
+  -  Can be Hard on a local scale and Soft on a local scale
+
+- Examples of use
+  - HIV
+  - Resistance to pesticides
+  - lactose intolerance: adaptation towards lactose tolerance have occured twice in humans 
+
+- Key parameters
+
+  - Theta = 2Neµ 
+    - depends on Ne and fitness effects
+
+- Pattern detection: 
+
+  - Alternative hypotheses to selection
+
+    - drift
+
+    - did patterns exist before selective event or not? (cause and effect)
+
+      — 
+
+Paper discussion: Laurent et al. 2016 (led by Steve)
+
+we ussually don't know what it is, which gene or causal variant, we only see the sweep.
+
+- they have a specific gene targeted: MC1r (well known and ecological )
+- discrete habitat: white sand dunes (arose 7000 YA). 
+  - Selection of many lineages going on: 2 species analyzed, not recent common ancestry
+- 3 goals: 
+  - Pops. that colonized, is there migration
+  - Mc1r as a candidate gene for adaptation
+  - estimate age at which the mutation arose (age of selective sweep), is it consistent with our knowledge of the region (7000 YA)
+- fosmids= F-plasmids (circular) that facilitate conjugation in E-coli. Way to generate a library in E-coli. Use DNA of lizard (one sample) 40kb and insert into plasmid and insert this into E-coli. Reproduced colonies of e-coli, with millions of copies of the plasmid. Use a primer and hibridizing with gene, to detect MC1r with flourescence. then pick colony that has region of interest, isolated clones of region up to 100kb, therefore afterwards you get whole 40kb of interest and regions around it. 
+- how do they know it is selection and not bottleneck? 
+  - 96 random clones sequenced - use as a control to see if Mc1r is acting as selection
+- generate Denovo assmbly and capture probes
+  - ilumina sequencing only on probes found
+- F. 6: D~ 0 old mutations,  D < 0 : a sweep and recent mutation (many rare mutations), D > 0 rare mutations are missing. 
+
+______
+
+<div id='id-section19'/>
+
+### Page 19: 2017-03-29. Day 19
+
+#### Info update: Genetic Outlier Analysis: Local adaptation from pop.  (Lauren Ashlock)
+
+Finding signals of local adaptation. 
+
+Outline:
+
+1.  Local adaptation
+2.  Different approaches
+3.  Common obstacles
+4.  Solutions
+5.  Other considerations
+6.  Final notes
+
+--
+
+1. Local adaptations and selective pressures. If disease, one pop. can have some alleles present vs. another not undet selective pressure. 
+
+2. Dif. approaches:
+
+   1. Genetic environment association analysis
+   2. Differentiation outlier method Fst
+
+3. Challenges:
+
+   1. confounding factors
+      1. demographic history
+      2. neutral pop. structure
+      3. background selection
+      4. deleterious mutations
+   2. Missing genome
+      1. reduced representation
+      2. missing structural variants in reference. without ref. genome or with variations that may cause data to be missing when mapping to the reference
+      3. Loss of repetitive regions/ paralogs
+      4. Missing landscape
+         1. of low resolution environmental data
+         2. scale of local adaptation; where to sample
+         3. multi collinearity; eg. temp related to disease, then you might think something is caused by temp but really disease. 
+
+4. Solutions
+
+   1. Confounding factors
+
+      1. null demographic models
+      2. relatedness samples
+
+   2. Missing genome
+
+      1. reduced representation methods: exome, RNA-Seq
+      2. WGS: fundamentally the way to go
+      3. use of a reference genome
+      4. need sufficient depth of coverage
+
+   3. Missing landscape
+
+      1. know system: variations due to ecology anf biology of the system (e.g.. when using Bioclim: coarse data, not necessarily the variable that affects your system)
+
+      ​
+
+5. Other considerations:
+
+   1. Sampling strategy: # of individuals >10, paired samples within each region
+   2. Multiple comparissons
+      1. FDR: establish a false discovery rate
+      2. sliding window: look at parts at a time
+   3. Genomic architecture: more effective if simple archt. there are confounding factors (pleiotropy, epsitasis). 
+
+6. Final Notes: 
+
+   1. what would the ideal set-up (sampling design) be: extreme Ph (2) or gradient, have enough replication, pair samples by other factors.
+
+__
+
+Paper Discussion: Kubota et al. 2015 (led by Kattia)
+
+SNP vs. Gene based enrichment: may SNPs on one gene, gene only counted once. Overestimation of SNP method. 
+
+_____________
+
+<div id='id-section20'/>
+
+### Page 20: 2017-04-03. Day 20
+
+#### Karl Frettet: detecting selection in the SSW SNP data based on identifying Fst outliers
+
+<u>Concepts</u>
+
+1) Inbreeding produces structured populations
+
+2) Selective sweeps change allele frequency in populations
+
+3) Empirical p-values created from distribution of putative neutral loci are super useful for finding NS
+
+4) Methods OutFlank (2015)
+
+...
+
+F-statistics: Heterozygosity
+
+Fst = Ht -Hs/ Ht
+
+Fis = Ex 
+
+
+
+In the region, genetic variation increases as inbreeding increases.
+
+Before selection, only one allele (of interest), After selection: the selective sweep will result in the allele being present in all chromosomes… but you cannot tell the diference between the adaptive and neutral alleles because of Linkage Disequilibrium. 
+
+Creating empirical p-values: Graph of X^2 (Chi-square) vs. Freq. 
+
+Freq. vs Fst: distribution obtained, tails are trimmed (b/c of assumption that positive tail contains loci experiencing diversifying selection?)
+
+— 
+
+04/05/17: Steve's input
+
+x^2 ~ Fst(df)/1-Fst
+
+estimated after trimming the tails (upper and lower 5%), this demographic model then encompasses the outliers. 
+
+----
+
+<div id='id-section21'/>
+
+### Page 21: 2017-05-17 Homework #3
+
+In server use VCF tools:
+
+```command line
+# Filtering using VCF tools
+# Filter 1
+vcftools --gzvcf SSW_by24inds.txt.vcf.gz --min-alleles 2 --max-alleles 2  --maf 0.02 --max-missing 0.7 --recode --out ~/scripts/SSW_biallelic.MAF0.02.Miss0.7
+##After filtering, kept 8452 out of a possible 7486938 Sites
+
+# Filter 2
+vcftools --gzvcf SSW_by24inds.txt.vcf.gz --min-alleles 2 --max-alleles 2  --maf 0.05 --max-missing 0.7 --recode --out ~/scripts/SSW_biallelic.MAF0.05.Miss0.7
+##After filtering, kept 3418 out of a possible 7486938 Sites
+```
+
+```R
+## Laura Caicedo-Quiroga
+# Homework 3 for PBIO381
+
+### Analysis of population diversity and structure
+# Load the libraries
+library(vcfR)
+library(adegenet)
+
+#Read the vcf SNP data into R for filter 1
+vcf1 <- read.vcfR("SSW_biallelic.MAF0.02.Miss0.7.recode.vcf")
+
+# The adegenet package uses a highly efficient way of storing large SNP datasets in R called a "genlight" object. The following function creates a genlight object from your vcf:
+gl1 <- vcfR2genlight(vcf1)
+print(gl1) # Looks good! Right # of SNPs and individuals!
+
+# For info, try:
+gl1$ind.names #names in the order of vcf files
+gl1$loc.names[1:10] #first 10 locus names
+gl1$chromosome[1:3] #just transcript IDs
+
+# Notice there's nothing in the field that says "pop"? Let's fix that...
+ssw_meta <- read.table("ssw_healthloc.txt", header=T) # read in the metadata
+ssw_meta <- ssw_meta[order(ssw_meta$Individual),] # sort by Individual ID, just like the VCF file
+str(ssw_meta)
+
+# Confirm the ID's are ordered the same in gl1 and ssw_meta:
+gl1$ind.names #see names and sorted from small to big
+ssw_meta$Individual
+
+gl1$pop <- ssw_meta$Location # assign locality info
+gl1$other <- as.list(ssw_meta$Trajectory)
+
+###DAPC: discriminant analysis on PCA, give a priori groups and ask how well the SNPS differentiate the groups
+# Run the DAPC using disease status to group samples
+disease.dapc <- dapc(gl1, pop=as.factor(unlist(gl1$other)), n.pca=8, n.da=3,
+                     var.loadings=T, pca.info=T)
+disease.dapc
+# Scatterplot of results
+scatter.dapc(disease.dapc, grp=as.factor(unlist(gl1$other)), legend=T)
+
+# Plot the posterior assignment probabilities to each group
+compoplot(disease.dapc)
+disease.dapc
+
+# Which loci contribute the most to distinguishing Healthy vs. Sick individuals?
+loadingplot(abs(disease.dapc$var.load), 
+            lab.jitter=1, 
+            threshold=quantile(abs(disease.dapc$var.load), probs=0.999))
+
+# Filter #2
+#Read the vcf SNP data into R for filter 3
+vcf1 <- read.vcfR("SSW_biallelic.MAF0.05.Miss0.7.recode.vcf")
+
+# The adegenet package uses a highly efficient way of storing large SNP datasets in R called a "genlight" object. The following function creates a genlight object from your vcf:
+gl1 <- vcfR2genlight(vcf1)
+print(gl1) # Looks good! Right # of SNPs and individuals!
+
+# For info, try:
+gl1$ind.names #names in the order of vcf files
+gl1$loc.names[1:10] #first 10 locus names
+gl1$chromosome[1:3] #just transcript IDs
+
+# Notice there's nothing in the field that says "pop"? Let's fix that...
+ssw_meta <- read.table("ssw_healthloc.txt", header=T) # read in the metadata
+ssw_meta <- ssw_meta[order(ssw_meta$Individual),] # sort by Individual ID, just like the VCF file
+str(ssw_meta)
+
+# Confirm the ID's are ordered the same in gl1 and ssw_meta:
+gl1$ind.names #see names and sorted from small to big
+ssw_meta$Individual
+
+gl1$pop <- ssw_meta$Location # assign locality info
+gl1$other <- as.list(ssw_meta$Trajectory)
+
+###DAPC: discriminant analysis on PCA, give a priori groups and ask how well the SNPS differentiate the groups
+# Run the DAPC using disease status to group samples
+disease.dapc <- dapc(gl1, pop=as.factor(unlist(gl1$other)), n.pca=8, n.da=3,
+                     var.loadings=T, pca.info=T)
+disease.dapc
+# Scatterplot of results
+scatter.dapc(disease.dapc, grp=as.factor(unlist(gl1$other)), legend=T)
+
+# Plot the posterior assignment probabilities to each group
+compoplot(disease.dapc)
+disease.dapc
+
+# Which loci contribute the most to distinguishing Healthy vs. Sick individuals?
+loadingplot(abs(disease.dapc$var.load), 
+            lab.jitter=1, 
+            threshold=quantile(abs(disease.dapc$var.load), probs=0.999))
+```
+
+
+
+-----------
+
+<div id='id-section22'/>
+
+### Page 22: 2017-05-17: Day 21
+
+Melissa: Find out which genes are in the assembly
+
+Recall the pipeline: (triangle shape)
+
+Processing raw data (.fastq) Program: Trimmomatic
+
+​	-> transcriptome assembly (.fasta) Prog: Trinity
+
+​		-> annotation (.fasta) Prog: BLAST
+
+​		-> map reads (.sam) Prog: BWA
+
+​			-> DGE (counts table) Prog: DESeq2
+
+​				-> LFC, p.val, stat
+
+​			-> Pop. Genomics (.vcf) Prog: PCA, DAPC, Admixture
+
+​				-> Fst, loadings
+
+​		-> Biological Gene function: Functional Enrichment Analyses (match 		  
+
+​			predictions) Prog: GO_MWU (from Dixon et al.)
+
+<u>Annotation:</u> (when no genome available)
+
+- Programs: 
+  - Blast2GO (paid) 
+  - Brute force (do manually), you have more control
+  - Pipelines: Trinotate (Trinity and Annotate), SNP2GO (just for SNP data)
+- Start with .fasta (genes) and use various databases  to find out what they are:
+  - BLAST: takes a long time, databases (NCBI's NR= non-redundant protein), there are two approaches;
+    - ​             Query (assembly)-> .fasta, Subject-> .db
+    - blastp:            .pep (AA)                                .pep
+      - (single best AA prediction)
+    - blastx:            .cds (nucl)—(6x)—>               .pep
+    - BLAST Output
+      - e-value: prob that you would get the match you were aiming for by chance (incorporates everything): smaller score-better (10^-2 - 10^50)
+        - better: more stringent
+      - bit score: reflects how close is your query to the database? bigger score-better
+      - % identity
+      - length
+  - DIAMOND: protein database (UniProt)
+    - Gene Ontology (GO)
+    - Uniprot
+    - KEG
+    - pfam 
+  - Why protein databases: improves annotation, bc anything that will confuse with another organism will not appear: less wobble, no codon bias. Also, you want to know the function
+
+Output:
+
+| gene | NR   | Uniprot | GO categories | taxa |
+| ---- | ---- | ------- | ------------- | ---- |
+|      |      |         |               |      |
+
+- Then use gene and GO categories to do Enrichment Analysis
+
+— 
+
+##### Paper discussion:  Berens et al. 2014
+
+Gene toolkits:
+
+​	transcriptome expression
+
+​	KEGG: curated database of pathways
+
+​	GO
+
+Why use nutritional manipulation samples for assembly but not in the rest of process?
+
+- they used Fisher's exact test for GO Enrichment to determine stat. significance (contingency tables)
+
+  Fisher's Exact Test
+
+  |                 | non-DEG | DEG  |           |
+  | --------------- | ------- | ---- | --------- |
+  | **nor in GO:X** | 1800    | 200  | 2000: 10% |
+  | **GO:x**        | 50      | 50   | 100: 50%  |
+
+Therefore there is a 5x change. 
+
+One could set up a cut-off or use everything
+
+graph Fst: whole distribution of metric (Fst, Stat, p-value)
+

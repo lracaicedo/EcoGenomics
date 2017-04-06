@@ -1,3 +1,5 @@
+
+
 # Lab Notebook
 
 **Use terminal**
@@ -343,7 +345,7 @@ log(Likelihood (full model) - Likelihood (reduced))
 
 03/05/17
 
-we have 94 reds, but 24 samples; we need to use one of two approaches towards analyzing each sample separately:
+we have 94 reads, but 24 samples; we need to use one of two approaches towards analyzing each sample separately:
 
 01_rep1.sam, 01_rep2.sam.. —> Merge using "samtools"
 
@@ -439,7 +441,7 @@ ______
   vcftools --gzvcf SSW_byind.txt.vcf.gz --min-alleles 2 --max-alleles 2 --maf 0.02 --max-missing 0.8 --recode --out ~/SSW_all_biallelic.MAF0.02.Miss0.8
   ```
 
-  —gzvcf (i will give you a zipped version of the vcf file)
+  —gzvcf (will give you a zipped version of the vcf file)
 
   Edits: biallelic filter, biallelic freq. and eliminate missing data
 
@@ -547,3 +549,240 @@ i #to edit
 
 Use R
 
+----
+
+03/20/17
+
+n=24
+
+1. Final VCF data —> filter —> Output H.D.
+2. Estimate allele frequency of H & S —> f(H) - f(S)
+3. Fst between H vs S —> output to laptop —> plot on R
+4. Estimate Pi(syn), Pi(nonsyn), ratio syn/nonsyn —> output to laptop, compare to Rominguier
+
+wc = word count, counts number of rows and number of characters
+
+```
+$ grep "HS\|SS" ssw_healthloc.txt | cut -f1 >~/S_SampleIDs.txt
+# "HS\|SS" match either HS or SS
+```
+
+---
+
+03/21/2017
+
+terminal: 
+
+```
+cd /data/project_data/snps/reads2snps
+screen
+/data/popgen/dNdSpiNpiS_1.0 -alignment_file=SSW_by24inds.txt.fas -ingroup=sp -out=~/dNdSpiNpiS_output
+# keys: control+a+d
+```
+
+```
+[lcaicedo@pbio381 reads2snps]$ cat SSW_bamlist.txt.sum
+################################################################################
+#                              Biological Summary                              #
+################################################################################
+
+Selected ingroup species: sp
+
+Number of analyzed individual: 24 (from 1 population(s))
+
+Total number of contig used for sequence analysis: 1113
+
+Total number of SNPs: 5040
+
+  - Biallelic: 4991
+  - Triallelic: 49
+  - Quadriallelic: 0
+
+Fit: # like Fst
+
+Average Fit: -0.0507419 [-0.06817; -0.031933]
+(Fit calculated in 902 contigs)
+# Hi Fit: inbreeding, high homozygocity
+
+Weir & Cockerham Fit (Evolution 1984):
+
+Average Weir & Cockerham Fit: 0.00703754 [-0.017669; 0.032047]
+(Fit calculated in 902 contigs)
+
+piN/piS ratio:
+
+Average piS in focal species: 0.00585312 [0.005172; 0.006598]
+# purifying selection, 
+Average piN in focal species: 0.00154546 [0.00133; 0.001782]
+Average piN / average piS: 0.264041 [0.223914; 0.310575]
+#higher value means that selection isn't as effective at eliminating deleterious mutations.tends to be low for bacteria. nd invertebrates with high pop. sizes. to know if high or low we need to compare to Rominguier data(metazoa) a
+(piS and piN calculated in 902 contigs of average length 50)
+
+Individual heterozygosity:
+
+H(03_5-08_S_2): 0.00292949
+H(07_5-08_S_1): 0.00212127
+H(08_5-08_H_0): 0.00160917
+H(09_5-08_H_0): 0.00146331
+H(10_5-08_H_0): 0.00118121
+H(14_5-08_S_2): 0.00240668
+H(15_5-08_H_0): 0.00153744
+H(19_5-11_H_0): 0.00209038
+H(20_5-08_H_0): 0.000972337
+H(22_5-08_S_1): 0.00127272
+H(23_5-17_S_2): 0.00252627
+H(24_5-08_H_0): 0.000786939
+H(26_5-08_S_2): 0.00145689
+H(27_5-08_H_0): 0.00185711
+H(28_5-08_S_1): 0.00137447
+H(29_5-08_S_2): 0.00200665
+H(31_6-12_H_0): 0.00178091
+H(32_6-12_H_0): 0.00216789
+H(33_6-12_H_0): 0.00210024
+H(34_6-12_H_0): 0.00186592
+H(35_6-12_H_0): 0.00229033
+H(36_6-12_S_1): 0.00264985
+H(37_6-12_H_0): 0.00230314
+H(38_6-12_H_0): 0.0028128
+```
+
+Pi (s) -> estimator of theta 0 = 4Neu 
+
+Ne = Pi(s)/ 4u
+
+if: u~ 4X10^-9 (literature: Mike Lynch mutation rates of invertebrates)
+
+Ne= 0.00555/ (4x 4X10^-9)= 365,625
+
+-assumes generation time for sea stars is the same than estimated (lit)
+
+- if gen. times are higher, then Ne wil be higher
+
+
+---
+
+Terminal: 
+
+Have files on my directory: 
+
+- SSW_all_biallelic.MAF0.02.Miss0.8.recode.vcf.gz 
+- ssw_healthloc.txt
+
+Fetch to my computer, use script on tutorial: https://adnguyen.github.io/2017_Ecological_Genomics/Tutorial/2017-03-22_Tutorials_PopulGenomics4.html
+
+-----
+
+03/29/17: lab tutorial from ADMIXTURE (https://adnguyen.github.io/2017_Ecological_Genomics/Tutorial/2017-03-22_Tutorials_PopulGenomics4.html)
+
+dataset of i individuals @ j SNPs -> Pr(G|K,Q,P)
+
+- Q= ancestry coefficient (proportion of ancestry in each population in an individual genome) 
+- P= allele frequencies at each of the K populations
+
+ADMIXTURE: analysis is not Bayesian
+
+- to choose a model:
+  - If G= 24 individuals: [ matrix divided in chunks and masks one of these] Cross validation: If I develop a model on all except the masked one, how good is the model at predicting the genotype of the masked one.(similar to a Jacknife), we want a low cross validation score, choose the K that generated the best cross validation. 
+- If A= reference allele, T = alternate allele
+
+Import
+
+copy to home directory the files: vcf2admixture_SSW.spid, SSW_tidal.pops, vcf2geno.sh, and ADMIX.sh
+
+```
+vim vcf2geno.sh
+# change the input file name (SSW_all_biallelic.MAF0.02.Miss0.8.recode.vcf)and output file name (SSW_all_biallelic.MAF0.02.Miss0.8.recode.vcf.geno)
+./vcf2geno.sh # to bash the file
+vi ADMIX.sh #vi same as vim
+--
+#!/bin/bash
+
+# Run ADMIXTURE to determine the number of genetic clusters in the SNP data, 
+# and the ancestry proportions of each individual
+
+# Here's the utility of 'for loops'...
+
+for K in {1..10}
+
+do
+
+admixture -C 0.000001 --cv #C: is small, the smaller the more you can make the algorithm climb to find the peak# ./SSW_all_biallelic.MAF0.02.Miss0.8.recode.vcf.geno $K \
+| tee log${K}.out # |= take the output from admixture analysis and send to a log file into .out file, tee= take everything#
+
+done
+# $ = 
+# After the for loop finishes, you can use 'grep' to grab the values of the CV from each separate log file and append them into a new summary text file.
+
+grep CV log*.out >chooseK.txt # CV= cross validation error and send this bit to new file called chooseL.txt#
+```
+
+
+
+write and exit vim
+
+bash ADMIX.sh
+
+- to see output Ks: cat chooseK.txt:
+
+```
+log10.out:CV error (K=10): 0.54329
+log1.out:CV error (K=1): 0.52967 #this is the lowest value, so one population#
+log2.out:CV error (K=2): 0.62210
+log3.out:CV error (K=3): 0.72173
+log4.out:CV error (K=4): 0.81377
+log5.out:CV error (K=5): 0.89176
+log6.out:CV error (K=6): 0.94948
+log7.out:CV error (K=7): 0.89471
+log8.out:CV error (K=8): 0.96684
+log9.out:CV error (K=9): 0.95880
+```
+
+If, K:1-20: gives lowest value for K=20 because of overfitting
+
+--------
+
+HW: take tools and try with dif. filtering strategies: 
+
+```
+--min-alleles 2
+--max-alleles 2
+--max-missing 0.8, or 1.0 (eliminate all missing data)
+--recode
+--out filename
+--maf: minor allele frequencies (seen in Gompert) can go as low as 0.01, ussually 0.05
+--minDP: read depth (low being 5)
+--hwe: based on P-value, eg. 0.01 elliminate any that violate HWE, to explore effect of HW
+
+analyze 2 vcf files using PCA, DAPC or ADMIXTURE (choose one)
+
+# to remove individuals:
+vcftools --vcf filename.vcf --remove-indivs 03 --remove-indivs 17 --min_alleles 2 --max-alleles 2
+# OR have a text file with the individuals to remove:
+--remove list_of_indiv_to_remove.txt ...
+# how to select individuals to remove? indiv. above a threshold of missing data (eg. 10%) OR using a heat map with
+
+```
+
+* use journals from class or look at Molecular ecology.
+
+_______
+
+04/03/17
+
+search in vim: /whatIwanttosearch
+
+
+
+----
+
+**Why might we want to BLAST to different databases?**
+
+more prob of hit from NR, but get more functional information with Uniprot
+
+​	<u>Query</u>			    <u>Subject</u>
+
+​	.cds -> DIAMOND      nr
+
+ORF .pep -> blastp	    uniprot -> uniprot ID-> GO IDs KEGG taxa
+
+​	.pep-> blastp		    P.miniata.pep & S.purpuratus.pep->
