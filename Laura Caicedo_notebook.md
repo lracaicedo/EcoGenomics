@@ -44,7 +44,7 @@ Here you can see my online notebook for the Ecological Genomics course offered f
 - [Page 23: 2017-04-10](#id-section23).
 - [Page 24: 2017-04-12](#id-section24).
 - [Page 25: 2017-04-19](#id-section25).
-- [Page 26: 2017-05-08](#id-section26).
+- [Page 26: 2017-05-08](#id-section26).Code for Final Project
 - [Page 27:](#id-section27).
 - [Page 28:](#id-section28).
 - [Page 29:](#id-section29).
@@ -2207,9 +2207,7 @@ ________
 
 <div id='id-section26'/>
 
-### Page 26: 2017-05-08: Day 25
-
-Code for Final Project:
+### Page 26: 2017-05-08: Code for Final Project:
 
 ------
 
