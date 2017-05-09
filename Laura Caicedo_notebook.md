@@ -40,7 +40,7 @@ Here you can see my online notebook for the Ecological Genomics course offered f
 - [Page 19:2017-03-29](#id-section19) Day 19
 - [Page 20:2017-04-03](#id-section20) Day 20
 - [Page 21: 2017-04-05](#id-section21)Homework #3
-- [Page 22:](#id-section22).
+- [Page 22: 2017-05-17](#id-section22).
 - [Page 23:](#id-section23).
 - [Page 24:](#id-section24).
 - [Page 25:](#id-section25).
@@ -1649,7 +1649,7 @@ estimated after trimming the tails (upper and lower 5%), this demographic model 
 
 <div id='id-section21'/>
 
-### Page 21: 2017-05-17 Homework #3
+### Page 21: 2017-04-05 Homework #3
 
 In server use VCF tools:
 
@@ -1763,7 +1763,7 @@ loadingplot(abs(disease.dapc$var.load),
 
 <div id='id-section22'/>
 
-### Page 22: 2017-05-17: Day 21
+### Page 22: 2017-04-05: Day 21
 
 Melissa: Find out which genes are in the assembly
 
@@ -1850,4 +1850,515 @@ Therefore there is a 5x change.
 One could set up a cut-off or use everything
 
 graph Fst: whole distribution of metric (Fst, Stat, p-value)
+
+______
+
+<div id='id-section23'/>
+
+### Page 23: 2017-04-10: Day 22
+
+<u>Outline</u>
+
+1) Announcements
+
+2) SSW Projects: Metagenomics
+
+3) Microbiomes vs metagenomes
+
+4) Process of Generating & analyzing data
+
+5) Microbial revolution
+
+6) THE BIG QUESTION
+
+--
+
+2) RNA (Sea-stars)
+
+- RNA Seq
+  - What genes are expressed? (transcriptomics)
+  - What is the diversity & structure? Is there evidence for selection? (Pop Genomics)
+- 16S- Amplicon-Seq
+  - What microbes are present? What are they doing? (metagenomics)
+
+3A) Microbiome: community, assemblage of microbial taxa associated within a host or environment. (answers: Who is there?)
+
+- pathogens
+- symbionts: mutualist, commensals
+- form the holobiont = Host + microbiome (Linn Margoulis: symbiosis as the driver for evolutionary processes)
+- How to measure: (Amplicon seq.)
+  - 16s rRNA: this sub-unit of DNA that codes for this RNA, RNA is non-coding, single stranded, multiple unpaired hairpin loops. "Loop" areas of hairpin contain variable sections. (Prokaryotes)
+  - ITS: Internal transcribed spacer: spacer b/w RNA sub-units eg. [18S]—(ITS1)—[58S]—(ITS2)—[28S] (Eukaryotes)
+
+3B) METAGENOMICS: Genes being expressed by the microbiome (Answers: What are they doing?)
+
+- <u>Function!</u> 
+- RNASeq or Shot-gun DNA-Seq
+
+4) Processing:
+
+	1. Sample tissue, Extract DNA/RNA
+	2. PCR target gene (16S): targets Bacteria and Archae if you have the right primers, or one
+	3. Barcode amplified fragments
+	4. Cluster sequences based on similarity (97% to recognize OTU) (by distances)
+	5. BLAST OTU's to recognize Taxonomy 
+
+
+
+5) Microbial Revolution! 
+
+- You cannot assign taxa to most of the OTUs: many taxa are unclassifiable
+
+6) THE BIG QUESTIONS 
+
+- Is there a "core" microbiome shared in common among many organisms?
+- How much diversity is unique to individuals, populations, communities? Is it heritable?
+- Does the micro biome evolve under different conditions?: Evolution of micro biome—> <u>adaptation</u> of host to environmental change?
+- Can knowledge of microbiome predict a response to environmental selection? 
+
+— Paper Discussion
+
+Ziegler et al. 2017: Bacterial community dynamics are linked to
+
+patterns of coral heat tolerance.
+
+
+
+—Computer lab
+
+QUIME takes sequences and are clustered into OTUs, makes OTUs table. 
+
+Phenotype: if sample was sick or healthy at time the sample was taken. 
+
+Description: not necessary
+
+(blue)= this is a directory
+
+[lcaicedo@pbio381 16s_analysis]$ cd validate_map/
+
+[lcaicedo@pbio381 validate_map]$ ll
+
+total 524
+
+-rw-r--r--. 1 lcaicedo users  10180 Apr 10 10:24 map_corrected.txt
+
+-rw-r--r--. 1 lcaicedo users 398821 Apr 10 10:24 map.html
+
+-rw-r--r--. 1 lcaicedo users  68678 Apr 10 10:24 map.log
+
+-rw-r--r--. 1 lcaicedo users  50732 Apr 10 10:24 overlib.js
+
+- download map.html
+
+```
+# inside my homedir, 16s_analysis/joined/02-5-05
+
+[lcaicedo@pbio381 joined]$ cd 02-5-05
+[lcaicedo@pbio381 02-5-05]$ ll
+total 122816
+-rw-r--r--. 1 lcaicedo users 75182840 Apr 10 10:38 fastqjoin.join.fastq
+-rw-r--r--. 1 lcaicedo users 25285403 Apr 10 10:38 fastqjoin.un1.fastq
+-rw-r--r--. 1 lcaicedo users 25285403 Apr 10 10:38 fastqjoin.un2.fastq
+```
+
+```
+#changed from tutorial
+multiple_split_libraries_fastq.py -i ~/16s_analysis/joined -o ~/16s_analysis/filtered -m sampleid_by_file --include_input_dir_path --remove_filepath_in_name  --mapping_indicator /data/project_data/16s/map.txt
+```
+
+```
+head seqs.fna
+I see: sequence names, sequences (fasta file)
+```
+
+```
+pick_open_reference_otus.py -i ~/16s_analysis/filtered/seqs.fna -o ~/16s_analysis/otus  --parallel --jobs_to_start 1
+# only 1 job_to_start 1 as a test, bc computational (all samples takes 4 days)
+```
+
+```
+[lcaicedo@pbio381 16s_analysis]$ biom summarize-table -i /data/project_data/16s/otu_table/otu_table_mc2_w_tax_no_pynast_failures.biom
+Num samples: 176 #this is the correct number, if other: error
+Num observations: 93033 ## number of OTUs that got picked (reads per sample)-(it's high), error if "low"##
+Total count: 8362869
+Table density (fraction of non-zero values): 0.028
+```
+
+
+
+
+
+--
+
+Presentation: 15 minutes, background, main methods: discussion of the pipeline, results, interpretation. 
+
+-----------
+
+<div id='id-section24'/>
+
+### Page 24: 2017-04-12: Day 23
+
+
+
+Info Update: Host genetic associations woth the microbiome
+
+Intro
+
+
+
+1) the microbiome: various interactions
+
+​	Beneficial: digestive, immune, vitamins, lower xenobionts, lower pathogens
+
+​	Microbiota are heritable
+
+2) heritability: proportion of a host trait measured across a population, and explained by genetic mechanisms rather than environmental conditions. [note: not inheritance]
+
+- ​	tested
+
+  - directly : using twin pairs
+
+    - MZ (up)
+    - DZ (down)
+
+  - GWAS: studies on humans
+
+    - MB ~ "as traits"
+
+    - SNP data (host)
+
+    - 16s rRNA (MB)
+
+    - Ex> Hutterites (founder community in Europe since 1800, same food): fecal microbiota in 2 seasons
+
+      - 15 heritable taxa, seasonal effects, olfactory receptor genes associated with microbes in the gut. 
+
+        ​
+
+        3) Cross-study comparissons
+
+
+    - mice-QTL: immune effects
+    - plants-QTL: app richness & abundance of individual taxa
+    - flies-GWAS: barrier defense (digestive)
+    - immunity
+
+4) Limitations
+
+- MB is costly
+- small N-> lower significant results
+- lacking taxa
+- meta-analysis-> lower significant results
+- suggestions: increase N, unified sample sequencing analysis
+
+5) Future
+
+- perhaps co-evolution with micro biome
+
+— microbiome as a trait, yes or no??
+
+— extended phenotype: Tom whitham? example of the beaver damm. 
+
+______
+
+Computer lab:
+
+- filtering OTUs
+  - search for chimeras= sequences with two or more known taxa pieced toghether. 
+    - filter with homology to a database
+    - usearch: free (small N only) now vsearch= same thing
+
+```
+vsearch --uchime_ref /data/project_data/16s/otu_table/rep_set.fna --chimeras ~/16s_analysis/mc2_w_tax_no_pynast_failures_chimeras.fasta --db /usr/lib/python2.7/site-packages/qiime_default_reference/gg_13_8_otus/rep_set/97_otus.fasta
+
+# explained
+vsearch --uchime_ref #use this uchime method
+/data/project_data/16s/otu_table/rep_set.fna 
+--chimeras ## we want to identify chimeric seqs ~/16s_analysis/mc2_w_tax_no_pynast_failures_chimeras.fasta --db /usr/lib/python2.7/site-packages/qiime_default_reference/gg_13_8_otus/rep_set/97_otus.fasta #output database is fasta with a list of all the chimeric seqs. 
+```
+
+```
+filter_otus_from_otu_table.py -i /data/project_data/16s/otu_table/otu_table_mc2_w_tax_no_pynast_failures.biom -o otu_table_mc2_w_tax_no_pynast_failures_no_chimeras.biom -e ~/16s_analysis/mc2_w_tax_no_pynast_failures_chimeras.fasta
+
+# Explained
+filter_otus_from_otu_table.py -i #script from qiime /data/project_data/16s/otu_table/otu_table_mc2_w_tax_no_pynast_failures.biom -o # path to otu table from last class
+otu_table_mc2_w_tax_no_pynast_failures_no_chimeras.biom  # path to output 
+-e ~/16s_analysis/mc2_w_tax_no_pynast_failures_chimeras.fasta #(-e= fasta file just made) 
+```
+
+```
+# make phylogeny, screen (to get out: cntrol + a + d), re-attach to screen(check on screen): screen -r
+
+filter_fasta.py -f /data/project_data/16s/otu_table/pynast_aligned_seqs/rep_set_aligned_pfiltered.fasta -o ~/16s_analysis/rep_set_aligned_pfiltered_no_chimeras.fasta -a ~/16s_analysis/mc2_w_tax_no_pynast_failures_chimeras.fasta -n
+
+filter_fasta.py -f #takes chimeric from the fasta /data/project_data/16s/otu_table/pynast_aligned_seqs/rep_set_aligned_pfiltered.fasta -o ~/16s_analysis/rep_set_aligned_pfiltered_no_chimeras.fasta -a ~/16s_analysis/mc2_w_tax_no_pynast_failures_chimeras.fasta -n
+```
+
+```
+#
+filter_otus_from_otu_table.py -i otu_table_mc2_w_tax_no_pynast_failures_no_chimeras.biom -o otu_table_mc2_w_tax_no_pynast_failures_no_chimeras_frequency_filtered.biom 
+--min_count 50 --min_samples 44 #at least 50 reads (for OTU on all samples put toghether), and 44= 25% of 176 samples if not it gets ## there is a min abundance flag. 
+
+##How many OTUs are left? # summary command
+biom summarize-table -i otu_table_mc2_w_tax_no_pynast_failures_no_chimeras_frequency_filtered.biom
+ ### results of summary
+Num samples: 176 # num. of OTUs
+Num observations: 1064 # num. of reads: good number, but we can filter differently if too low or high. we have much noise
+```
+
+````
+# takes a couple of days
+core_diversity_analyses.py -o core_diversity_filtered -i otu_table_mc2_w_tax_no_pynast_failures_no_chimeras_frequency_filtered.biom -m ~/Po/MiSeq/joined/map.txt -t rep_set_no_chimeras.tre -e 20000 -a 8 # -t : tree, -e 20000: only looks at samples that have 20000 or more, and those that do, it will pick 20000 reads if not done: all OTUs will be oversampled
+````
+
+weighted: takes into account abundance of OTUs , un weighted: precense absence. 
+
+--------
+
+<div id='id-section25'/>
+
+### Page 25: 2017-04-19: Day 24
+
+Inf update: Rarefying Microbiome data is NOT acceptable (by Alex)
+
+
+
+- Rarefying vs rarefaction: which to use if we want to know if the richness observed (and rare taxa) found is represented by sampling (did we sample enough to get rare taxa or not).
+  - Rarefying: estimate of S based on # of samples from each group
+    - normalization of data, takes lowest common denominator of data. 	
+  - Rafefaction: normalization of data using lowest N (radom subsampling wthout replacement)
+    - estimate sp richness from raw counts and estimate richness from rarefaction curve. 
+- Past Methods: Proportions
+  - higher rate of false positivies
+  - heteroskedasticity: variability of a variable change along another predicted variable
+    -  Variance in y and x : there is a linear relationship. (homoske.. is no relationship b/w var y and var x)
+  - Reduced power
+  - proportion of individual taxonomic units over total time. 
+- Rarefying 
+  - Steps (reads rarefying)
+    - smallest N, N(sub)Lmin= minimum read count among your sample
+    - discard libs with fewer than NLmin
+    - sub-sample reads larger Ns without replacement: reads are not repeated, can have pools of same OTUs
+  - What it does: normalizing data, removing # of reads
+  - Problems with Rarefying
+    - high rate of false positives (find more diferences than there really are)
+    - requires omission of actual data
+    - reduces statistical power
+- Use Mixture Model instead
+  - statistical distribution, made up of more than one distribution mixed together
+    - combines a binomial with a zero inflated Gaussian distribution 
+    - accounts for biological variability
+  - why better?
+    - by not cutting down N, no decrease in power
+    - increase in accuracy 
+  - Programs
+    - EdgeR, DESeq, phyloseq
+
+* Mixed models done in lab with DESeq (phyloseq as well)
+
+—— Paper discussion: Roder et al. 2015
+
+MUTHER: has rarefying step 
+
+eg. from max=12, 503 to 500
+
+rarefying useflu for diversity not for abundance
+
+testing for diferences: Permaneça, generate a distance matrix, pairwise comparisson: (which samples are shared and which are unique). P-value by randomizing, permuting and recalculating the test statistic. 
+
+
+
+— Computer Lab
+
+cannot WGS for microbiome and host, the way to get around it with 16 is: PICRUST
+
+PICRUST: uses extended ancestral state reconstruction algorithm to identify a closely related species. 
+
+-gives an OTU table, with KEGG orthology terms (like phyloseq and DESeq), in same .bio format
+
+```
+filter_otus_from_otu_table.py -i ~/16s_analysis/otu_table_mc2_w_tax_no_pynast_failures_no_chimeras_frequency_filtered.biom -o ~/16s_analysis/closed_otu_table.biom --negate_ids_to_exclude -e /usr/lib/python2.7/site-packages/qiime_default_reference/gg_13_8_otus/rep_set/97_otus.fasta # if the id is not in the fasta file (hit in taxonomy),then get rid of it
+```
+
+```
+biom summarize-table -i closed_otu_table.biom
+#Output
+Num samples: 176
+Num observations: 259
+Total count: 1493357
+Table density (fraction of non-zero values): 0.546
+
+Counts/sample summary:
+ Min: 152.0
+ Max: 32426.0
+ Median: 6333.500
+ Mean: 8484.983
+ Std. dev.: 6937.648
+ Sample Metadata Categories: None provided
+ Observation Metadata Categories: taxonomy
+```
+
+```
+#Normalize
+normalize_by_copy_number.py -i ~/16s_analysis/closed_otu_table.biom -o ~/16s_analysis/closed_otu_table_norm.biom
+
+predict_metagenomes.py -f -i ~/16s_analysis/closed_otu_table_norm.biom -o ~/16s_analysis/metagenome_predictions.txt -a nsti_per_sample.txt 
+#-a we want you to calculate and place in text file
+
+# same but formattin og output is deifferent to use in R
+predict_metagenomes.py -i ~/16s_analysis/closed_otu_table_norm.biom -o ~/16s_analysis/metagenome_predictions.biom -a nsti_per_sample.txt
+
+```
+
+```
+head metagenome_predictions.txt
+
+wc -l metagenome_predictions.txt
+#Output:
+6910 metagenome_predictions.txt 
+```
+
+```
+#collapse to get pathway information
+categorize_by_function.py -f -i metagenome_predictions.biom -c KEGG_Pathways -l 3 -o metagenome_predictions.L3.txt #-l 3 (could be changed)
+
+```
+
+-------
+
+title <- "New.ReferenceOTU2814"
+data <- plotCounts(pheno_deseq_test, "New.ReferenceOTU2814" , 
+
+                   intgroup=c("Day","Phenotype"), returnData=TRUE)
+ggplot(data, aes(x=Day, y=count, color=Phenotype, group=Phenotype)) + 
+  geom_point() + stat_smooth(se=FALSE,method="loess") +  scale_y_log10() + ggtitle(title)
+
+________
+
+<div id='id-section26'/>
+
+### Page 26: 2017-05-08: Day 25
+
+Code for Final Project:
+
+------
+
+```R
+#Analysis for DGE between the intertidal and subtidal on Day 3
+
+countsTable <- read.delim('countsdata_trim2.txt', header=TRUE, stringsAsFactors=TRUE, row.names=1)
+countData <- as.matrix(countsTable)
+head(countData)
+dim(countData)
+
+conds <- read.delim("cols_data_trim.txt", header=TRUE, stringsAsFactors=TRUE, row.names=1)
+head(conds)
+colData <- as.data.frame(conds)
+colData
+
+colDay3 <- subset(colData, day=="day03")
+
+colDay3
+head(colDay3)
+dim(colDay3)
+
+# colInt<-subset(colDay3,location=="int")
+# colSub <- subset(colDay3, location=="sub")
+# 
+# colInt
+# colSub
+# 
+# countDataInt<-countData[, which(colnames(countData) %in% row.names(colInt))]
+# countDataSub<-countData[, which(colnames(countData) %in% row.names(colSub))]
+# dim(countDataInt)
+# dim(countDataSub)
+
+countDataDay3<-countData[, which(colnames(countData) %in% row.names(colDay3))]
+head(countDataDay3)
+dim(countDataDay3)
+
+ddsLoc<- DESeqDataSetFromMatrix(countData = countDataDay3, colData = colDay3 ,design = ~ location)
+
+ddsLoc
+
+ddsLoc <- ddsLoc[ rowSums(counts(ddsLoc)) > 100, ]
+
+colData(ddsLoc)$location <- factor(colData(ddsLoc)$location, levels=c("int","sub"))
+
+colData(ddsLoc)
+
+ddsLoc <- DESeq(ddsLoc) 
+
+names(ddsLoc)
+str(ddsLoc)
+
+resLoc <- results(ddsLoc)
+resLoc
+
+
+
+#sort results by padj
+resLoc <- resLoc[order(resLoc$padj),]
+
+head(resLoc)
+
+summary(resLoc)
+
+## Merge with normalized count data
+resSumm <- merge(as.data.frame(resLoc), as.data.frame(counts(ddsLoc, normalized=TRUE)), by="row.names", sort=FALSE)
+names(resSumm)[1] <- "Gene"
+resSumm <- head(resSumm)
+resSumm
+
+row.names(resSumm) <- c("DN41041_c3_g2", "DN47102_c1_g1", "DN19042_c0_g1", "DN39048_c5_g1", "DN39233_c0_g1", "DN39328_c5_g1")
+
+resSumm <- resSumm[,2:7]
+
+resSumm
+
+## Write results
+write.csv(resSumm, file="diffexpr-results.csv")
+
+plotCounts(ddsLoc, gene="TRINITY_DN39328_c5_g1_TRINITY_DN39328_c5_g1_i1_g.8543_m.8543", intgroup="location")
+
+vsdata <- vst(ddsLoc, blind=FALSE)
+
+plotPCA(vsdata, intgroup="location")
+
+#plot counts for top 6 genes
+
+normcounts<-data.frame(genes=rownames(counts(ddsLoc, normalized=TRUE)),counts(ddsLoc, normalized=TRUE))
+head(normcounts)
+
+#names.to.keep <- as.factor(c("TRINITY_DN41041_c3_g2_TRINITY_DN41041_c3_g2_i1_g.10613_m.10613", "TRINITY_DN47102_c1_g1_TRINITY_DN47102_c1_g1_i3_g.24581_m.24581", "TRINITY_DN19042_c0_g1_TRINITY_DN19042_c0_g1_i1_g.1710_m.1710", "TRINITY_DN39048_c5_g1_TRINITY_DN39048_c5_g1_i1_g.8316_m.8316", "TRINITY_DN39233_c0_g1_TRINITY_DN39233_c0_g1_i1_g.8447_m.8447 ", "TRINITY_DN39328_c5_g1_TRINITY_DN39328_c5_g1_i1_g.8543_m.8543"))
+#length(names.to.keep)
+#rows.to.keep<-which(rownames(normcounts) %in% names.to.keep) 
+normcounts2 <- normcounts[normcounts$genes %in% as.factor(rownames(head(resLoc))),]
+
+normcounts2
+dim(normcounts2)
+
+
+
+install.packages("tidyr")
+
+library(tidyr)
+
+countsDF <- gather(normcounts,individuals,normcounts,I03_5.08_S_2:I38_6.12_H_0)
+dim(countsDF)
+head(countsDF)
+
+summary(countsDF)
+
+head(conds)
+conds$individuals <- as.factor(rownames(conds))
+str(conds)
+library(dplyr)
+
+topHits <- inner_join(countsDF,conds,by="individuals")
+
+ggplot(topHits, aes(x=location,y=log(normcounts+1)))+geom_boxplot()+facet_grid(.~genes)
+
+
+```
 
